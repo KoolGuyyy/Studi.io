@@ -3,386 +3,500 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Studi.io</title>
 
 <style>
+:root {
+  --purple: #7657e8;
+  --purple-light: #eeeaff;
+  --blue: #4285f4;
+  --blue-light: #eaf2ff;
+  --green: #28a56a;
+  --green-light: #e9f8f0;
+  --orange: #f2994a;
+  --orange-light: #fff1e4;
+  --pink: #e95f91;
+  --pink-light: #ffeaf2;
+  --yellow: #e6ad25;
+  --yellow-light: #fff7d9;
+  --text: #191a23;
+  --muted: #747784;
+  --border: #e7e8ef;
+  --background: #f7f8fc;
+  --white: #ffffff;
+}
+
 * {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-background: #f7f8fc;
-color: #171923;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--background);
+  color: var(--text);
 }
 
-/* =========================
-TOP NAVIGATION
-========================= */
+/* HEADER */
 
 header {
-background: rgba(255,255,255,0.95);
-border-bottom: 1px solid #e8e9ef;
-position: sticky;
-top: 0;
-z-index: 100;
-backdrop-filter: blur(10px);
+  background: rgba(255,255,255,.95);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
 }
 
 .nav-container {
-max-width: 1200px;
-margin: auto;
-padding: 18px 25px 0;
-}
-
-.top-row {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding-bottom: 15px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 17px 20px 0;
 }
 
 .logo {
-font-size: 27px;
-font-weight: 800;
-letter-spacing: -1px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 14px;
 }
 
 .logo span {
-font-weight: 400;
-color: #777b87;
+  color: var(--purple);
 }
 
 .nav {
-display: flex;
-gap: 5px;
-overflow-x: auto;
-scrollbar-width: none;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
 .nav::-webkit-scrollbar {
-display: none;
+  display: none;
 }
 
 .nav button {
-border: none;
-background: transparent;
-padding: 13px 14px;
-border-radius: 10px 10px 0 0;
-font-size: 14px;
-font-weight: 600;
-color: #737783;
-cursor: pointer;
-white-space: nowrap;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  padding: 12px 13px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
 }
 
-.nav button:hover {
-background: #f2f3f7;
-color: #171923;
-}
-
+.nav button:hover,
 .nav button.active {
-color: #171923;
-background: #f2f3f7;
+  color: var(--purple);
+  border-bottom-color: var(--purple);
 }
 
-/* =========================
-MAIN
-========================= */
+/* MAIN */
 
 main {
-max-width: 1200px;
-margin: auto;
-padding: 45px 25px 80px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px 80px;
 }
 
 .page {
-animation: fadeIn 0.25s ease;
+  animation: fade .2s ease;
 }
 
-@keyframes fadeIn {
-from {
-opacity: 0;
-transform: translateY(5px);
+.hidden {
+  display: none !important;
 }
 
-to {
-opacity: 1;
-transform: translateY(0);
-}
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* =========================
-HERO
-========================= */
+/* HERO */
 
 .hero {
-background: white;
-border: 1px solid #e9eaf0;
-border-radius: 24px;
-padding: 45px;
-margin-bottom: 30px;
+  background: linear-gradient(135deg, #ffffff 0%, #f1efff 100%);
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  padding: 45px;
+  margin-bottom: 30px;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--purple-light);
+  color: var(--purple);
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 15px;
 }
 
 .hero h1 {
-font-size: clamp(32px, 5vw, 52px);
-letter-spacing: -2px;
-margin-bottom: 12px;
+  font-size: clamp(35px, 6vw, 55px);
+  letter-spacing: -2.5px;
+  margin-bottom: 10px;
 }
 
 .hero p {
-color: #737783;
-font-size: 17px;
-max-width: 650px;
-line-height: 1.6;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 650px;
 }
 
-.hero-tag {
-display: inline-block;
-background: #f0f1f5;
-padding: 7px 12px;
-border-radius: 20px;
-font-size: 13px;
-font-weight: 700;
-margin-bottom: 18px;
-}
-
-/* =========================
-DASHBOARD CARDS
-========================= */
+/* CARDS */
 
 .section-title {
-margin: 35px 0 16px;
-font-size: 21px;
+  font-size: 21px;
+  margin: 30px 0 16px;
 }
 
 .cards {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
 }
 
 .card {
-background: white;
-border: 1px solid #e9eaf0;
-border-radius: 18px;
-padding: 25px;
-transition: 0.2s ease;
-cursor: pointer;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  padding: 24px;
+  cursor: pointer;
+  transition: .2s;
 }
 
 .card:hover {
-transform: translateY(-4px);
-box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(30,30,50,.07);
 }
 
 .icon {
-width: 46px;
-height: 46px;
-display: flex;
-align-items: center;
-justify-content: center;
-background: #f1f2f6;
-border-radius: 13px;
-font-size: 22px;
-margin-bottom: 18px;
+  width: 47px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-size: 22px;
+  margin-bottom: 17px;
 }
 
+.icon.purple { background: var(--purple-light); }
+.icon.blue { background: var(--blue-light); }
+.icon.green { background: var(--green-light); }
+.icon.orange { background: var(--orange-light); }
+.icon.pink { background: var(--pink-light); }
+.icon.yellow { background: var(--yellow-light); }
+
 .card h3 {
-font-size: 17px;
-margin-bottom: 7px;
+  margin-bottom: 7px;
 }
 
 .card p {
-color: #777b87;
-line-height: 1.5;
-font-size: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-/* =========================
-CONTENT BOX
-========================= */
+/* CONTENT */
 
 .content-box {
-background: white;
-border: 1px solid #e9eaf0;
-border-radius: 22px;
-padding: 35px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 32px;
 }
 
 .content-box h1 {
-font-size: 34px;
-margin-bottom: 8px;
+  font-size: 34px;
+  margin-bottom: 7px;
 }
 
 .subtitle {
-color: #777b87;
-margin-bottom: 30px;
+  color: var(--muted);
+  margin-bottom: 28px;
 }
 
-/* =========================
-BUTTONS
-========================= */
+/* BUTTONS */
 
 .button {
-border: none;
-background: #171923;
-color: white;
-padding: 12px 18px;
-border-radius: 10px;
-font-weight: 600;
-cursor: pointer;
-font-size: 14px;
+  border: none;
+  border-radius: 11px;
+  background: var(--purple);
+  color: white;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .button:hover {
-opacity: 0.85;
+  opacity: .87;
 }
 
-/* =========================
-NOTES
-========================= */
+.secondary {
+  background: #f0f1f5;
+  color: var(--text);
+}
 
+.danger {
+  background: #ffe8e8;
+  color: #d33;
+}
+
+/* INPUTS */
+
+input,
 textarea,
-input {
-width: 100%;
-border: 1px solid #dedfe6;
-border-radius: 12px;
-padding: 14px;
-font-family: inherit;
-font-size: 15px;
-outline: none;
-}
-
-textarea {
-min-height: 300px;
-resize: vertical;
-margin-bottom: 12px;
+select {
+  width: 100%;
+  border: 1px solid #dedfe6;
+  border-radius: 11px;
+  padding: 13px;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  background: white;
 }
 
 input:focus,
-textarea:focus {
-border-color: #999daa;
+textarea:focus,
+select:focus {
+  border-color: var(--purple);
 }
 
-/* =========================
-GOALS
-========================= */
+textarea {
+  min-height: 280px;
+  resize: vertical;
+}
+
+/* TASKS */
+
+.add-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.add-row input {
+  flex: 1;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: #f8f8fb;
+  border-radius: 13px;
+  margin-top: 9px;
+}
+
+.task-check {
+  width: auto;
+}
+
+.task.completed span {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.task span {
+  flex: 1;
+}
+
+.task-delete {
+  border: none;
+  background: transparent;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* GOALS */
 
 .goal {
-display: flex;
-align-items: center;
-gap: 12px;
-background: #f7f8fb;
-padding: 15px;
-border-radius: 12px;
-margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 17px;
+  margin-top: 12px;
 }
 
-.goal input {
-width: auto;
+.goal-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-/* =========================
-TIMER
-========================= */
+.progress {
+  height: 8px;
+  background: #eeeeF3;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--orange);
+  width: 0%;
+  transition: .3s;
+}
+
+/* TIMER */
 
 .timer {
-text-align: center;
+  text-align: center;
 }
 
 .timer-number {
-font-size: clamp(60px, 12vw, 110px);
-font-weight: 800;
-letter-spacing: -5px;
-margin: 30px 0;
+  font-size: clamp(65px, 13vw, 115px);
+  font-weight: 800;
+  letter-spacing: -6px;
+  margin: 30px 0;
 }
 
 .timer-buttons {
-display: flex;
-justify-content: center;
-gap: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-/* =========================
-WHEEL
-========================= */
+/* WHEEL */
 
 .wheel {
-text-align: center;
+  text-align: center;
+}
+
+.wheel-circle {
+  width: 220px;
+  height: 220px;
+  margin: 30px auto;
+  border-radius: 50%;
+  background: conic-gradient(
+    #7657e8 0deg 45deg,
+    #4285f4 45deg 90deg,
+    #28a56a 90deg 135deg,
+    #f2994a 135deg 180deg,
+    #e95f91 180deg 225deg,
+    #e6ad25 225deg 270deg,
+    #7657e8 270deg 315deg,
+    #4285f4 315deg 360deg
+  );
+  border: 9px solid white;
+  box-shadow: 0 8px 30px rgba(0,0,0,.12);
+  transition: transform 2s cubic-bezier(.15,.75,.2,1);
 }
 
 .wheel-result {
-font-size: 30px;
-font-weight: 800;
-margin: 45px 0;
+  font-size: 25px;
+  font-weight: 800;
+  margin: 20px;
 }
 
-/* =========================
-FUN FACT
-========================= */
+/* FACT */
 
 .fact {
-background: #f7f8fb;
-border-radius: 15px;
-padding: 30px;
-font-size: 20px;
-line-height: 1.5;
-margin-bottom: 20px;
+  background: var(--yellow-light);
+  border-radius: 16px;
+  padding: 30px;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
-/* =========================
-HIDDEN
-========================= */
+/* GAMES */
 
-.hidden {
-display: none;
+.game-box {
+  text-align: center;
+  background: #f8f8fb;
+  border-radius: 17px;
+  padding: 25px;
 }
 
-/* =========================
-MOBILE
-========================= */
+.score {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 15px;
+}
+
+.click-button {
+  width: 150px;
+  height: 150px;
+  border: none;
+  border-radius: 50%;
+  background: var(--pink);
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.click-button:active {
+  transform: scale(.95);
+}
+
+/* RESOURCES */
+
+.resource-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.resource-card h3 {
+  margin-bottom: 7px;
+}
+
+.resource-card p {
+  color: var(--muted);
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+/* MOBILE */
 
 @media (max-width: 800px) {
-
-.cards {
-grid-template-columns: repeat(2, 1fr);
-}
-
-.hero {
-padding: 30px;
-}
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 550px) {
+  main {
+    padding: 25px 14px 60px;
+  }
 
-.nav-container {
-padding: 15px 12px 0;
-}
+  .hero {
+    padding: 28px 22px;
+  }
 
-main {
-padding: 25px 15px 60px;
-}
+  .content-box {
+    padding: 23px 17px;
+  }
 
-.cards {
-grid-template-columns: 1fr;
-}
+  .cards {
+    grid-template-columns: 1fr;
+  }
 
-.hero {
-padding: 28px 22px;
-border-radius: 18px;
-}
-
-.content-box {
-padding: 24px 18px;
-}
-
-.nav button {
-padding: 11px 12px;
-}
+  .add-row {
+    flex-direction: column;
+  }
 }
 </style>
 </head>
@@ -390,53 +504,26 @@ padding: 11px 12px;
 <body>
 
 <header>
+  <div class="nav-container">
 
-<div class="nav-container">
+    <div class="logo">
+      studi<span>.io</span>
+    </div>
 
-<div class="top-row">
-<div class="logo">
-studi<span>.io</span>
-</div>
-</div>
+    <nav class="nav">
 
-<nav class="nav">
+      <button class="active" onclick="showPage('home', this)">Home</button>
+      <button onclick="showPage('resources', this)">Resources</button>
+      <button onclick="showPage('notes', this)">Notes</button>
+      <button onclick="showPage('tasks', this)">Tasks</button>
+      <button onclick="showPage('goals', this)">Goals</button>
+      <button onclick="showPage('wheel', this)">Study Wheel</button>
+      <button onclick="showPage('games', this)">Mini Games</button>
+      <button onclick="showPage('timer', this)">Study Timer</button>
+      <button onclick="showPage('facts', this)">Fun Facts</button>
 
-<button class="active" onclick="showPage('home', this)">
-Home
-</button>
-
-<button onclick="showPage('resources', this)">
-Resources
-</button>
-
-<button onclick="showPage('notes', this)">
-Notes
-</button>
-
-<button onclick="showPage('goals', this)">
-Goals
-</button>
-
-<button onclick="showPage('wheel', this)">
-Study Wheel
-</button>
-
-<button onclick="showPage('games', this)">
-Mini Games
-</button>
-
-<button onclick="showPage('timer', this)">
-Study Timer
-</button>
-
-<button onclick="showPage('facts', this)">
-Fun Facts
-</button>
-
-</nav>
-
-</div>
-
+    </nav>
+  </div>
 </header>
 
 
@@ -446,109 +533,72 @@ Fun Facts
 
 <section id="home" class="page">
 
-<div class="hero">
+  <div class="hero">
 
-<div class="hero-tag">
-YOUR STUDY SPACE
-</div>
+    <div class="badge">YOUR STUDY SPACE</div>
 
-<h1>
-Study smarter.
-</h1>
+    <h1>Study smarter.</h1>
 
-<p>
-Resources, notes, goals and useful study tools —
-all in one simple place.
-</p>
+    <p>
+      Everything you need to organise your studying,
+      stay focused and make progress — all in one place.
+    </p>
 
-</div>
+  </div>
 
+  <h2 class="section-title">What do you want to do?</h2>
 
-<h2 class="section-title">
-What do you want to do?
-</h2>
+  <div class="cards">
 
+    <div class="card" onclick="showPage('resources')">
+      <div class="icon blue">📚</div>
+      <h3>Resources</h3>
+      <p>Find useful study material and revision resources.</p>
+    </div>
 
-<div class="cards">
+    <div class="card" onclick="showPage('notes')">
+      <div class="icon purple">📝</div>
+      <h3>Notes</h3>
+      <p>Write and save your notes directly in Studi.io.</p>
+    </div>
 
-<div class="card" onclick="showPage('resources')">
+    <div class="card" onclick="showPage('tasks')">
+      <div class="icon green">✅</div>
+      <h3>Tasks</h3>
+      <p>Keep track of everything you need to get done.</p>
+    </div>
 
-<div class="icon">📚</div>
+    <div class="card" onclick="showPage('goals')">
+      <div class="icon orange">🎯</div>
+      <h3>Goals</h3>
+      <p>Set bigger goals and track your progress.</p>
+    </div>
 
-<h3>Resources</h3>
+    <div class="card" onclick="showPage('wheel')">
+      <div class="icon purple">🎡</div>
+      <h3>Study Wheel</h3>
+      <p>Let the wheel choose what you should study.</p>
+    </div>
 
-<p>
-Find study material and revision resources.
-</p>
+    <div class="card" onclick="showPage('games')">
+      <div class="icon pink">🎮</div>
+      <h3>Mini Games</h3>
+      <p>Take a quick break between study sessions.</p>
+    </div>
 
-</div>
+    <div class="card" onclick="showPage('timer')">
+      <div class="icon blue">⏱️</div>
+      <h3>Study Timer</h3>
+      <p>Focus for a set amount of time.</p>
+    </div>
 
+    <div class="card" onclick="showPage('facts')">
+      <div class="icon yellow">🧠</div>
+      <h3>Fun Facts</h3>
+      <p>Learn something interesting in a few seconds.</p>
+    </div>
 
-<div class="card" onclick="showPage('notes')">
-
-<div class="icon">📝</div>
-
-<h3>Notes</h3>
-
-<p>
-Write and save your study notes.
-</p>
-
-</div>
-
-
-<div class="card" onclick="showPage('goals')">
-
-<div class="icon">🎯</div>
-
-<h3>Goals</h3>
-
-<p>
-Set goals and keep track of your progress.
-</p>
-
-</div>
-
-
-<div class="card" onclick="showPage('wheel')">
-
-<div class="icon">🎡</div>
-
-<h3>Study Wheel</h3>
-
-<p>
-Can't decide what to study? Let the wheel decide.
-</p>
-
-</div>
-
-
-<div class="card" onclick="showPage('games')">
-
-<div class="icon">🎮</div>
-
-<h3>Mini Games</h3>
-
-<p>
-Take a quick break with simple games.
-</p>
-
-</div>
-
-
-<div class="card" onclick="showPage('timer')">
-
-<div class="icon">⏱️</div>
-
-<h3>Study Timer</h3>
-
-<p>
-Focus for a set amount of time.
-</p>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
@@ -557,37 +607,49 @@ Focus for a set amount of time.
 
 <section id="resources" class="page hidden">
 
-<div class="content-box">
+  <div class="content-box">
 
-<h1>📚 Resources</h1>
+    <h1>📚 Resources</h1>
 
-<p class="subtitle">
-Choose a subject to start studying.
-</p>
+    <p class="subtitle">
+      Choose a subject to explore.
+    </p>
 
-<div class="cards">
+    <div class="cards">
 
-<div class="card">
-<div class="icon">➗</div>
-<h3>Mathematics</h3>
-<p>Formulas, examples and practice questions.</p>
-</div>
+      <div class="resource-card">
+        <h3>➗ Mathematics</h3>
+        <p>Algebra, percentages, geometry, statistics and more.</p>
+      </div>
 
-<div class="card">
-<div class="icon">🧬</div>
-<h3>Science</h3>
-<p>Biology, chemistry and physics resources.</p>
-</div>
+      <div class="resource-card">
+        <h3>🧬 Biology</h3>
+        <p>Cells, genetics, body systems and living organisms.</p>
+      </div>
 
-<div class="card">
-<div class="icon">📖</div>
-<h3>English</h3>
-<p>Writing, reading and vocabulary resources.</p>
-</div>
+      <div class="resource-card">
+        <h3>⚗️ Chemistry</h3>
+        <p>Atoms, reactions, equations and chemical concepts.</p>
+      </div>
 
-</div>
+      <div class="resource-card">
+        <h3>⚡ Physics</h3>
+        <p>Forces, energy, motion, electricity and waves.</p>
+      </div>
 
-</div>
+      <div class="resource-card">
+        <h3>📖 English</h3>
+        <p>Writing, reading, vocabulary and analysis.</p>
+      </div>
+
+      <div class="resource-card">
+        <h3>🌎 Social Sciences</h3>
+        <p>History, geography and social studies.</p>
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -596,24 +658,55 @@ Choose a subject to start studying.
 
 <section id="notes" class="page hidden">
 
-<div class="content-box">
+  <div class="content-box">
 
-<h1>📝 Notes</h1>
+    <h1>📝 Notes</h1>
 
-<p class="subtitle">
-Your notes are saved on this device.
-</p>
+    <p class="subtitle">
+      Your notes automatically stay on this device.
+    </p>
 
-<textarea
-id="notesBox"
-placeholder="Start writing your notes..."
-></textarea>
+    <textarea id="notesBox"
+      placeholder="Start writing your notes..."></textarea>
 
-<button class="button" onclick="saveNotes()">
-Save Notes
-</button>
+    <button class="button" onclick="saveNotes()">
+      Save Notes
+    </button>
 
-</div>
+  </div>
+
+</section>
+
+
+<!-- TASKS -->
+
+<section id="tasks" class="page hidden">
+
+  <div class="content-box">
+
+    <h1>✅ Tasks</h1>
+
+    <p class="subtitle">
+      Get the little things done.
+    </p>
+
+    <div class="add-row">
+
+      <input
+        id="taskInput"
+        placeholder="e.g. Finish maths worksheet"
+        onkeydown="if(event.key === 'Enter') addTask()"
+      >
+
+      <button class="button" onclick="addTask()">
+        + Add Task
+      </button>
+
+    </div>
+
+    <div id="taskList"></div>
+
+  </div>
 
 </section>
 
@@ -622,94 +715,105 @@ Save Notes
 
 <section id="goals" class="page hidden">
 
-<div class="content-box">
+  <div class="content-box">
 
-<h1>🎯 Goals</h1>
+    <h1>🎯 Goals</h1>
 
-<p class="subtitle">
-What do you want to accomplish?
-</p>
+    <p class="subtitle">
+      Bigger things you're working towards.
+    </p>
 
-<input
-id="goalInput"
-placeholder="e.g. Finish my biology revision"
->
+    <div class="add-row">
 
-<button
-class="button"
-onclick="addGoal()"
-style="margin-top:10px;"
->
-Add Goal
-</button>
+      <input
+        id="goalInput"
+        placeholder="e.g. Get Excellence in Science"
+      >
 
-<div id="goalList"></div>
+      <button class="button" onclick="addGoal()">
+        + Add Goal
+      </button>
 
-</div>
+    </div>
+
+    <div id="goalList"></div>
+
+  </div>
 
 </section>
 
 
-<!-- STUDY WHEEL -->
+<!-- WHEEL -->
 
 <section id="wheel" class="page hidden">
 
-<div class="content-box wheel">
+  <div class="content-box wheel">
 
-<h1>🎡 Study Wheel</h1>
+    <h1>🎡 Study Wheel</h1>
 
-<p class="subtitle">
-Let Studi.io decide what you should study.
-</p>
+    <p class="subtitle">
+      Can't decide what to study?
+    </p>
 
-<div id="wheelResult" class="wheel-result">
-Spin the wheel!
-</div>
+    <div
+      id="wheelCircle"
+      class="wheel-circle">
+    </div>
 
-<button class="button" onclick="spinWheel()">
-SPIN
-</button>
+    <div id="wheelResult" class="wheel-result">
+      Spin the wheel!
+    </div>
 
-</div>
+    <button class="button" onclick="spinWheel()">
+      SPIN THE WHEEL
+    </button>
+
+  </div>
 
 </section>
 
 
-<!-- MINI GAMES -->
+<!-- GAMES -->
 
 <section id="games" class="page hidden">
 
-<div class="content-box">
+  <div class="content-box">
 
-<h1>🎮 Mini Games</h1>
+    <h1>🎮 Mini Games</h1>
 
-<p class="subtitle">
-Take a quick break between study sessions.
-</p>
+    <p class="subtitle">
+      Take a quick break.
+    </p>
 
-<div class="cards">
+    <div class="game-box">
 
-<div class="card">
-<div class="icon">🐍</div>
-<h3>Snake</h3>
-<p>Coming soon.</p>
-</div>
+      <h2>🔘 Button Presser</h2>
 
-<div class="card">
-<div class="icon">🔘</div>
-<h3>Button Presser</h3>
-<p>Coming soon.</p>
-</div>
+      <p style="color:#747784;margin-top:7px;">
+        How many times can you press the button?
+      </p>
 
-<div class="card">
-<div class="icon">🧠</div>
-<h3>Quick Quiz</h3>
-<p>Coming soon.</p>
-</div>
+      <div class="score">
+        Score: <span id="clickScore">0</span>
+      </div>
 
-</div>
+      <button
+        class="click-button"
+        onclick="pressButton()">
+        PRESS!
+      </button>
 
-</div>
+      <br><br>
+
+      <button
+        class="button secondary"
+        onclick="resetGame()">
+        Reset
+      </button>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -718,35 +822,35 @@ Take a quick break between study sessions.
 
 <section id="timer" class="page hidden">
 
-<div class="content-box timer">
+  <div class="content-box timer">
 
-<h1>⏱️ Study Timer</h1>
+    <h1>⏱️ Study Timer</h1>
 
-<p class="subtitle">
-Focus for 25 minutes, then take a break.
-</p>
+    <p class="subtitle">
+      Focus for 25 minutes.
+    </p>
 
-<div id="time" class="timer-number">
-25:00
-</div>
+    <div id="time" class="timer-number">
+      25:00
+    </div>
 
-<div class="timer-buttons">
+    <div class="timer-buttons">
 
-<button class="button" onclick="startTimer()">
-Start
-</button>
+      <button class="button" onclick="startTimer()">
+        Start
+      </button>
 
-<button class="button" onclick="pauseTimer()">
-Pause
-</button>
+      <button class="button secondary" onclick="pauseTimer()">
+        Pause
+      </button>
 
-<button class="button" onclick="resetTimer()">
-Reset
-</button>
+      <button class="button secondary" onclick="resetTimer()">
+        Reset
+      </button>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
@@ -755,23 +859,23 @@ Reset
 
 <section id="facts" class="page hidden">
 
-<div class="content-box">
+  <div class="content-box">
 
-<h1>🧠 Fun Facts</h1>
+    <h1>🧠 Fun Facts</h1>
 
-<p class="subtitle">
-Learn something random.
-</p>
+    <p class="subtitle">
+      Learn something new.
+    </p>
 
-<div id="fact" class="fact">
-Click the button to discover a fact.
-</div>
+    <div id="fact" class="fact">
+      Click the button for a random fact.
+    </div>
 
-<button class="button" onclick="newFact()">
-Give me a fact
-</button>
+    <button class="button" onclick="newFact()">
+      Give me a fact
+    </button>
 
-</div>
+  </div>
 
 </section>
 
@@ -781,113 +885,338 @@ Give me a fact
 <script>
 
 /* =========================
-NAVIGATION
+   NAVIGATION
 ========================= */
 
 function showPage(page, button) {
 
-document.querySelectorAll(".page").forEach(section => {
-section.classList.add("hidden");
-});
+  document.querySelectorAll(".page").forEach(section => {
+    section.classList.add("hidden");
+  });
 
-document.getElementById(page).classList.remove("hidden");
+  document.getElementById(page).classList.remove("hidden");
 
-document.querySelectorAll(".nav button").forEach(btn => {
-btn.classList.remove("active");
-});
+  document.querySelectorAll(".nav button").forEach(btn => {
+    btn.classList.remove("active");
+  });
 
-if (button) {
-button.classList.add("active");
-}
+  if (button) {
+    button.classList.add("active");
+  }
 
-window.scrollTo({
-top: 0,
-behavior: "smooth"
-});
-}
-
-
-/* =========================
-STUDY WHEEL
-========================= */
-
-const subjects = [
-"Mathematics",
-"Science",
-"English",
-"Biology",
-"Chemistry",
-"Physics",
-"History",
-"Revision"
-];
-
-function spinWheel() {
-
-const result =
-subjects[Math.floor(Math.random() * subjects.length)];
-
-document.getElementById("wheelResult").textContent =
-"Study " + result + " 📚";
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
 
 /* =========================
-NOTES
+   NOTES
 ========================= */
 
 const savedNotes =
-localStorage.getItem("studiNotes");
+  localStorage.getItem("studiNotes");
 
 if (savedNotes) {
-document.getElementById("notesBox").value = savedNotes;
+  document.getElementById("notesBox").value = savedNotes;
 }
 
 function saveNotes() {
 
-const notes =
-document.getElementById("notesBox").value;
+  const notes =
+    document.getElementById("notesBox").value;
 
-localStorage.setItem("studiNotes", notes);
+  localStorage.setItem("studiNotes", notes);
 
-alert("Notes saved!");
+  alert("Notes saved!");
 }
 
 
 /* =========================
-GOALS
+   TASKS
 ========================= */
+
+let tasks =
+  JSON.parse(localStorage.getItem("studiTasks")) || [];
+
+function saveTasks() {
+  localStorage.setItem(
+    "studiTasks",
+    JSON.stringify(tasks)
+  );
+}
+
+function renderTasks() {
+
+  const list =
+    document.getElementById("taskList");
+
+  list.innerHTML = "";
+
+  if (tasks.length === 0) {
+
+    list.innerHTML = `
+      <p style="color:#999;padding:20px 0;">
+        No tasks yet. Add your first task above!
+      </p>
+    `;
+
+    return;
+  }
+
+  tasks.forEach((task, index) => {
+
+    const div =
+      document.createElement("div");
+
+    div.className =
+      "task" + (task.completed ? " completed" : "");
+
+    div.innerHTML = `
+
+      <input
+        class="task-check"
+        type="checkbox"
+        ${task.completed ? "checked" : ""}
+        onchange="toggleTask(${index})"
+      >
+
+      <span>${escapeHTML(task.text)}</span>
+
+      <button
+        class="task-delete"
+        onclick="deleteTask(${index})">
+        ×
+      </button>
+    `;
+
+    list.appendChild(div);
+
+  });
+}
+
+function addTask() {
+
+  const input =
+    document.getElementById("taskInput");
+
+  const text =
+    input.value.trim();
+
+  if (!text) return;
+
+  tasks.push({
+    text: text,
+    completed: false
+  });
+
+  saveTasks();
+
+  input.value = "";
+
+  renderTasks();
+}
+
+function toggleTask(index) {
+
+  tasks[index].completed =
+    !tasks[index].completed;
+
+  saveTasks();
+
+  renderTasks();
+}
+
+function deleteTask(index) {
+
+  tasks.splice(index, 1);
+
+  saveTasks();
+
+  renderTasks();
+}
+
+
+/* =========================
+   GOALS
+========================= */
+
+let goals =
+  JSON.parse(localStorage.getItem("studiGoals")) || [];
+
+function saveGoals() {
+
+  localStorage.setItem(
+    "studiGoals",
+    JSON.stringify(goals)
+  );
+}
+
+function renderGoals() {
+
+  const list =
+    document.getElementById("goalList");
+
+  list.innerHTML = "";
+
+  if (goals.length === 0) {
+
+    list.innerHTML = `
+      <p style="color:#999;padding:20px 0;">
+        No goals yet. Add your first one!
+      </p>
+    `;
+
+    return;
+  }
+
+  goals.forEach((goal, index) => {
+
+    const div =
+      document.createElement("div");
+
+    div.className = "goal";
+
+    div.innerHTML = `
+
+      <div class="goal-top">
+
+        <strong>
+          ${escapeHTML(goal.text)}
+        </strong>
+
+        <button
+          class="task-delete"
+          onclick="deleteGoal(${index})">
+          ×
+        </button>
+
+      </div>
+
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value="${goal.progress}"
+        oninput="updateGoal(${index}, this.value)"
+      >
+
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        margin-top:7px;
+        color:#777;
+        font-size:13px;
+      ">
+
+        <span>Progress</span>
+
+        <span>
+          ${goal.progress}%
+        </span>
+
+      </div>
+
+      <div class="progress" style="margin-top:8px;">
+        <div
+          class="progress-bar"
+          style="width:${goal.progress}%">
+        </div>
+      </div>
+
+    `;
+
+    list.appendChild(div);
+
+  });
+}
 
 function addGoal() {
 
-const input =
-document.getElementById("goalInput");
+  const input =
+    document.getElementById("goalInput");
 
-const text =
-input.value.trim();
+  const text =
+    input.value.trim();
 
-if (!text) return;
+  if (!text) return;
 
-const goal =
-document.createElement("div");
+  goals.push({
+    text: text,
+    progress: 0
+  });
 
-goal.className = "goal";
+  saveGoals();
 
-goal.innerHTML = `
-<input type="checkbox">
-<span>${text}</span>
-`;
+  input.value = "";
 
-document
-.getElementById("goalList")
-.appendChild(goal);
+  renderGoals();
+}
 
-input.value = "";
+function updateGoal(index, value) {
+
+  goals[index].progress =
+    Number(value);
+
+  saveGoals();
+
+  renderGoals();
+}
+
+function deleteGoal(index) {
+
+  goals.splice(index, 1);
+
+  saveGoals();
+
+  renderGoals();
 }
 
 
 /* =========================
-TIMER
+   STUDY WHEEL
+========================= */
+
+const subjects = [
+  "Mathematics",
+  "Biology",
+  "Chemistry",
+  "Physics",
+  "English",
+  "History",
+  "Geography",
+  "Revision"
+];
+
+let wheelRotation = 0;
+
+function spinWheel() {
+
+  const circle =
+    document.getElementById("wheelCircle");
+
+  const random =
+    Math.floor(Math.random() * subjects.length);
+
+  wheelRotation +=
+    720 + random * 45;
+
+  circle.style.transform =
+    `rotate(${wheelRotation}deg)`;
+
+  setTimeout(() => {
+
+    document.getElementById("wheelResult")
+      .textContent =
+      "Study " + subjects[random] + " 📚";
+
+  }, 2000);
+}
+
+
+/* =========================
+   TIMER
 ========================= */
 
 let seconds = 25 * 60;
@@ -895,87 +1224,148 @@ let timerInterval = null;
 
 function updateTimer() {
 
-const minutes =
-Math.floor(seconds / 60);
+  const minutes =
+    Math.floor(seconds / 60);
 
-const remainingSeconds =
-seconds % 60;
+  const remaining =
+    seconds % 60;
 
-document.getElementById("time").textContent =
-`${minutes}:${remainingSeconds
-.toString()
-.padStart(2, "0")}`;
+  document.getElementById("time")
+    .textContent =
+    `${minutes}:${remaining
+      .toString()
+      .padStart(2, "0")}`;
 }
 
 function startTimer() {
 
-if (timerInterval) return;
+  if (timerInterval) return;
 
-timerInterval = setInterval(() => {
+  timerInterval =
+    setInterval(() => {
 
-if (seconds > 0) {
+      if (seconds > 0) {
 
-seconds--;
+        seconds--;
 
-updateTimer();
+        updateTimer();
 
-} else {
+      } else {
 
-clearInterval(timerInterval);
+        clearInterval(timerInterval);
 
-timerInterval = null;
+        timerInterval = null;
 
-alert("Study session finished! 🎉");
-}
+        alert(
+          "Study session complete! 🎉"
+        );
+      }
 
-}, 1000);
+    }, 1000);
 }
 
 function pauseTimer() {
 
-clearInterval(timerInterval);
+  clearInterval(timerInterval);
 
-timerInterval = null;
+  timerInterval = null;
 }
 
 function resetTimer() {
 
-pauseTimer();
+  pauseTimer();
 
-seconds = 25 * 60;
+  seconds = 25 * 60;
 
-updateTimer();
+  updateTimer();
 }
 
 
 /* =========================
-FUN FACTS
+   BUTTON GAME
+========================= */
+
+let clickScore = 0;
+
+function pressButton() {
+
+  clickScore++;
+
+  document.getElementById("clickScore")
+    .textContent =
+    clickScore;
+}
+
+function resetGame() {
+
+  clickScore = 0;
+
+  document.getElementById("clickScore")
+    .textContent = "0";
+}
+
+
+/* =========================
+   FUN FACTS
 ========================= */
 
 const facts = [
 
-"Octopuses have three hearts.",
+  "Octopuses have three hearts.",
 
-"A day on Venus is longer than a year on Venus.",
+  "A day on Venus is longer than its year.",
 
-"Honey can remain edible for an extremely long time when properly stored.",
+  "Bananas are botanically classified as berries.",
 
-"Bananas are botanically classified as berries.",
+  "The Eiffel Tower can become slightly taller in hot weather.",
 
-"The human brain uses a large share of the body's energy.",
+  "Honey can remain edible for a very long time when properly stored.",
 
-"The Eiffel Tower can become slightly taller in hot weather."
+  "Some species of bamboo can grow extremely quickly.",
 
+  "Lightning can heat the surrounding air to extremely high temperatures.",
+
+  "Your brain is responsible for coordinating an enormous amount of activity in your body.",
+
+  "There are more possible ways to shuffle a deck of cards than there are atoms on Earth.",
+
+  "Water can exist naturally as a solid, liquid and gas."
 ];
 
 function newFact() {
 
-const fact =
-facts[Math.floor(Math.random() * facts.length)];
+  const fact =
+    facts[Math.floor(
+      Math.random() * facts.length
+    )];
 
-document.getElementById("fact").textContent =
-fact;
+  document.getElementById("fact")
+    .textContent = fact;
 }
+
+
+/* =========================
+   SECURITY HELPER
+========================= */
+
+function escapeHTML(text) {
+
+  const div =
+    document.createElement("div");
+
+  div.textContent = text;
+
+  return div.innerHTML;
+}
+
+
+/* =========================
+   INITIAL LOAD
+========================= */
+
+renderTasks();
+renderGoals();
+updateTimer();
 
 </script>
 

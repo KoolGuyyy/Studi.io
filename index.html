@@ -3,509 +3,445 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Studi.io — Your Student Hub</title>
-
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-/* =========================================================
-STUDI.IO
-========================================================= */
-
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
+:root{
+--cream:#fffaf1;
+--paper:#fffdf8;
+--ink:#28252b;
+--muted:#77727b;
+--purple:#7867d8;
+--purple-dark:#6252c2;
+--yellow:#ffd966;
+--pink:#ff9db8;
+--blue:#91c8ff;
+--green:#9bd9a5;
+--orange:#ffb878;
+--border:#e8dfd2;
+--shadow:0 8px 0 rgba(45,38,32,.08);
+--radius:22px;
 }
 
-:root {
---cream: #fffaf1;
---paper: #fffdf8;
---ink: #28252b;
---muted: #77727b;
-
---purple: #7867d8;
---purple-dark: #6252c2;
-
---yellow: #ffd966;
---pink: #ff9db8;
---blue: #91c8ff;
---green: #9bd9a5;
---orange: #ffb878;
-
---border: #e8dfd2;
---shadow: 0 8px 0 rgba(45, 38, 32, 0.08);
-
---radius: 22px;
-}
-
-body {
-font-family:
-"Trebuchet MS",
-Arial,
-sans-serif;
-
+body{
+font-family:"Trebuchet MS",Arial,sans-serif;
 background:
-radial-gradient(
-circle at 10% 10%,
-rgba(255,217,102,.22),
-transparent 20%
-),
-radial-gradient(
-circle at 90% 20%,
-rgba(255,157,184,.18),
-transparent 22%
-),
+radial-gradient(circle at 10% 10%,rgba(255,217,102,.22),transparent 20%),
+radial-gradient(circle at 90% 20%,rgba(255,157,184,.18),transparent 22%),
 var(--cream);
-
-color: var(--ink);
-min-height: 100vh;
+color:var(--ink);
+min-height:100vh;
 }
 
-/* =========================================================
-HEADER
-========================================================= */
-
-header {
-background: var(--paper);
-border-bottom: 2px solid var(--border);
-
-display: flex;
-align-items: center;
-justify-content: space-between;
-
-padding: 18px 5%;
-
-position: sticky;
-top: 0;
-z-index: 100;
+header{
+background:var(--paper);
+border-bottom:2px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:18px 5%;
+position:sticky;
+top:0;
+z-index:100;
 }
 
-.logo {
-font-size: 29px;
-font-weight: 900;
-letter-spacing: -1.5px;
+.logo{
+font-size:29px;
+font-weight:900;
+letter-spacing:-1.5px;
 }
 
-.logo span {
-color: var(--purple);
+.logo span{color:var(--purple)}
+
+.logo small{
+font-size:11px;
+background:var(--yellow);
+padding:4px 7px;
+border-radius:8px;
+margin-left:5px;
+vertical-align:middle;
 }
 
-.logo small {
-font-size: 11px;
-background: var(--yellow);
-padding: 4px 7px;
-border-radius: 8px;
-margin-left: 5px;
-vertical-align: middle;
+.nav{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
 }
 
-.nav {
-display: flex;
-gap: 8px;
-flex-wrap: wrap;
+.nav button{
+border:none;
+background:transparent;
+padding:9px 13px;
+border-radius:12px;
+cursor:pointer;
+font-family:inherit;
+font-weight:700;
+color:var(--ink);
 }
 
-.nav button {
-border: none;
-background: transparent;
-padding: 9px 13px;
-border-radius: 12px;
-cursor: pointer;
-font-family: inherit;
-font-weight: 700;
-color: var(--ink);
+.nav button:hover{background:#f3eadf}
+
+.nav button.active{
+background:var(--purple);
+color:white;
 }
 
-.nav button:hover {
-background: #f3eadf;
+.page{
+width:min(1180px,92%);
+margin:auto;
 }
 
-.nav button.active {
-background: var(--purple);
-color: white;
+section{display:none}
+section.active{display:block}
+
+.hero{padding:55px 0 35px}
+
+.hero-inner{
+display:grid;
+grid-template-columns:1.5fr .8fr;
+gap:25px;
+align-items:stretch;
 }
 
-/* =========================================================
-PAGE
-========================================================= */
-
-.page {
-width: min(1180px, 92%);
-margin: auto;
+.hero-card{
+background:var(--paper);
+border:2px solid var(--border);
+border-radius:30px;
+padding:42px;
+box-shadow:var(--shadow);
 }
 
-section {
-display: none;
+.hero-card h1{
+font-size:clamp(42px,6vw,72px);
+line-height:.95;
+letter-spacing:-3px;
+margin-bottom:20px;
 }
 
-section.active {
-display: block;
+.hero-card h1 span{color:var(--purple)}
+
+.hero-card p{
+color:var(--muted);
+font-size:18px;
+max-width:600px;
+line-height:1.6;
 }
 
-/* =========================================================
-HERO
-========================================================= */
-
-.hero {
-padding: 55px 0 35px;
+.hero-sticker{
+background:var(--yellow);
+border-radius:30px;
+padding:30px;
+transform:rotate(2deg);
+box-shadow:var(--shadow);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
 }
 
-.hero-inner {
-display: grid;
-grid-template-columns: 1.5fr .8fr;
-gap: 25px;
-align-items: stretch;
+.hero-sticker .emoji{font-size:70px}
+
+.hero-sticker h3{
+font-size:25px;
+margin-top:10px;
 }
 
-.hero-card {
-background: var(--paper);
-border: 2px solid var(--border);
-border-radius: 30px;
-padding: 42px;
-box-shadow: var(--shadow);
+.big-button{
+margin-top:25px;
+background:var(--purple);
+color:white;
+border:none;
+border-radius:15px;
+padding:15px 24px;
+font-family:inherit;
+font-weight:900;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 5px 0 var(--purple-dark);
+transition:.15s;
 }
 
-.hero-card h1 {
-font-size: clamp(42px, 6vw, 72px);
-line-height: .95;
-letter-spacing: -3px;
-margin-bottom: 20px;
+.big-button:hover{transform:translateY(-2px)}
+
+.big-button:active{
+transform:translateY(3px);
+box-shadow:0 2px 0 var(--purple-dark);
 }
 
-.hero-card h1 span {
-color: var(--purple);
+.small-button{
+border:2px solid var(--border);
+background:var(--paper);
+padding:10px 15px;
+border-radius:12px;
+cursor:pointer;
+font-family:inherit;
+font-weight:700;
 }
 
-.hero-card p {
-color: var(--muted);
-font-size: 18px;
-max-width: 600px;
-line-height: 1.6;
+.dashboard-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+margin-bottom:35px;
 }
 
-.hero-sticker {
-background: var(--yellow);
-border-radius: 30px;
-padding: 30px;
-transform: rotate(2deg);
-box-shadow: var(--shadow);
-
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-
-text-align: center;
+.tile{
+padding:25px;
+border-radius:var(--radius);
+border:2px solid var(--border);
+box-shadow:var(--shadow);
+min-height:180px;
 }
 
-.hero-sticker .emoji {
-font-size: 70px;
+.tile:nth-child(1){background:#e7ddff}
+.tile:nth-child(2){background:#fff0b5}
+.tile:nth-child(3){background:#d9efff}
+.tile:nth-child(4){background:#ffdce7}
+.tile:nth-child(5){background:#dff3df}
+.tile:nth-child(6){background:#ffe3c9}
+
+.tile-icon{
+font-size:35px;
+margin-bottom:12px;
 }
 
-.hero-sticker h3 {
-font-size: 25px;
-margin-top: 10px;
+.tile h3{
+font-size:21px;
+margin-bottom:7px;
 }
 
-/* =========================================================
-BUTTONS
-========================================================= */
-
-.big-button {
-margin-top: 25px;
-background: var(--purple);
-color: white;
-
-border: none;
-border-radius: 15px;
-
-padding: 15px 24px;
-
-font-family: inherit;
-font-weight: 900;
-font-size: 16px;
-
-cursor: pointer;
-
-box-shadow: 0 5px 0 var(--purple-dark);
-
-transition: .15s;
+.tile p{
+color:#625c64;
+line-height:1.5;
 }
 
-.big-button:hover {
-transform: translateY(-2px);
+.tile button{margin-top:15px}
+
+.ad-space{
+border:2px dashed #d9d0c4;
+background:rgba(255,255,255,.45);
+height:90px;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#aaa19a;
+font-size:12px;
+margin:25px 0;
 }
 
-.big-button:active {
-transform: translateY(3px);
-box-shadow: 0 2px 0 var(--purple-dark);
+.ad-space.top-ad{
+margin-top:5px;
 }
 
-.small-button {
-border: 2px solid var(--border);
-background: var(--paper);
-padding: 10px 15px;
-border-radius: 12px;
-cursor: pointer;
-font-family: inherit;
-font-weight: 700;
+.ad-space.large-ad{
+height:120px;
 }
 
-/* =========================================================
-DASHBOARD GRID
-========================================================= */
-
-.dashboard-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 18px;
-margin-bottom: 35px;
+.page-title{
+padding:45px 0 25px;
 }
 
-.tile {
-padding: 25px;
-border-radius: var(--radius);
-border: 2px solid var(--border);
-box-shadow: var(--shadow);
-min-height: 180px;
+.page-title h2{
+font-size:42px;
+letter-spacing:-1px;
 }
 
-.tile:nth-child(1) {
-background: #e7ddff;
+.page-title p{
+color:var(--muted);
+margin-top:8px;
 }
 
-.tile:nth-child(2) {
-background: #fff0b5;
+.resource-toolbar{
+background:var(--paper);
+border:2px solid var(--border);
+border-radius:22px;
+padding:22px;
+box-shadow:var(--shadow);
+margin-bottom:22px;
 }
 
-.tile:nth-child(3) {
-background: #d9efff;
+.resource-toolbar h3{
+margin-bottom:15px;
 }
 
-.tile:nth-child(4) {
-background: #ffdce7;
+.resource-form{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
 }
 
-.tile:nth-child(5) {
-background: #dff3df;
+.resource-form input,
+.resource-form textarea{
+width:100%;
+border:2px solid var(--border);
+border-radius:13px;
+padding:13px;
+font-family:inherit;
+background:#fffdf8;
+color:var(--ink);
 }
 
-.tile:nth-child(6) {
-background: #ffe3c9;
+.resource-form textarea{
+grid-column:1/-1;
+min-height:85px;
+resize:vertical;
 }
 
-.tile-icon {
-font-size: 35px;
-margin-bottom: 12px;
+.resource-form .big-button{
+width:max-content;
+margin-top:0;
 }
 
-.tile h3 {
-font-size: 21px;
-margin-bottom: 7px;
+.resource-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
 }
 
-.tile p {
-color: #625c64;
-line-height: 1.5;
+.resource-card{
+background:var(--paper);
+border:2px solid var(--border);
+border-radius:20px;
+padding:23px;
+box-shadow:var(--shadow);
 }
 
-.tile button {
-margin-top: 15px;
+.resource-card .subject{
+display:inline-block;
+padding:6px 10px;
+background:var(--yellow);
+border-radius:9px;
+font-size:12px;
+font-weight:800;
+margin-bottom:13px;
 }
 
-/* =========================================================
-AD SPACE
-========================================================= */
+.resource-card h3{margin-bottom:8px}
 
-.ad-space {
-border: 2px dashed #d9d0c4;
-background: rgba(255,255,255,.45);
-
-height: 90px;
-
-border-radius: 18px;
-
-display: flex;
-align-items: center;
-justify-content: center;
-
-color: #aaa19a;
-font-size: 12px;
-
-margin: 25px 0;
+.resource-card p{
+color:var(--muted);
+line-height:1.5;
 }
 
-/* =========================================================
-PAGE TITLES
-========================================================= */
-
-.page-title {
-padding: 45px 0 25px;
+.resource-card a{
+display:inline-block;
+margin-top:13px;
+color:var(--purple);
+font-weight:800;
+text-decoration:none;
 }
 
-.page-title h2 {
-font-size: 42px;
-letter-spacing: -1px;
+.delete-resource{
+margin-top:15px;
+font-size:12px;
 }
 
-.page-title p {
-color: var(--muted);
-margin-top: 8px;
-}
-
-/* =========================================================
-RESOURCE CARDS
-========================================================= */
-
-.resource-grid {
-display: grid;
-grid-template-columns: repeat(3,1fr);
-gap: 18px;
-}
-
-.resource-card {
-background: var(--paper);
-border: 2px solid var(--border);
-border-radius: 20px;
-padding: 23px;
-box-shadow: var(--shadow);
-}
-
-.resource-card .subject {
-display: inline-block;
-padding: 6px 10px;
-background: var(--yellow);
-border-radius: 9px;
-font-size: 12px;
-font-weight: 800;
-margin-bottom: 13px;
-}
-
-.resource-card h3 {
-margin-bottom: 8px;
-}
-
-.resource-card p {
-color: var(--muted);
-line-height: 1.5;
-}
-
-/* =========================================================
-NOTES
-========================================================= */
-
-.notes-layout {
-display: grid;
-grid-template-columns: 280px 1fr;
-gap: 20px;
+.notes-layout{
+display:grid;
+grid-template-columns:280px 1fr;
+gap:20px;
 }
 
 .notes-list,
-.note-editor {
-background: var(--paper);
-border: 2px solid var(--border);
-border-radius: 22px;
-padding: 20px;
-box-shadow: var(--shadow);
+.note-editor{
+background:var(--paper);
+border:2px solid var(--border);
+border-radius:22px;
+padding:20px;
+box-shadow:var(--shadow);
 }
 
-.notes-list button {
-display: block;
-width: 100%;
-text-align: left;
-border: none;
-background: #f6efe6;
-padding: 13px;
-border-radius: 12px;
-margin-bottom: 8px;
-cursor: pointer;
-font-family: inherit;
+.notes-list button.note-item{
+display:block;
+width:100%;
+text-align:left;
+border:none;
+background:#f6efe6;
+padding:13px;
+border-radius:12px;
+margin-bottom:8px;
+cursor:pointer;
+font-family:inherit;
+}
+
+.notes-list button.note-item:hover{
+background:#eee3d5;
 }
 
 .note-title,
-.note-text {
-width: 100%;
-border: 2px solid var(--border);
-border-radius: 14px;
-padding: 13px;
-font-family: inherit;
-background: #fffdf8;
-color: var(--ink);
-margin-bottom: 12px;
+.note-text{
+width:100%;
+border:2px solid var(--border);
+border-radius:14px;
+padding:13px;
+font-family:inherit;
+background:#fffdf8;
+color:var(--ink);
+margin-bottom:12px;
 }
 
-.note-title {
-font-size: 20px;
-font-weight: 800;
+.note-title{
+font-size:20px;
+font-weight:800;
 }
 
-.note-text {
-min-height: 300px;
-resize: vertical;
+.note-text{
+min-height:300px;
+resize:vertical;
 }
 
-/* =========================================================
-GOALS
-========================================================= */
-
-.goal-box {
-background: var(--paper);
-border: 2px solid var(--border);
-border-radius: 22px;
-padding: 25px;
-box-shadow: var(--shadow);
+.goal-box{
+background:var(--paper);
+border:2px solid var(--border);
+border-radius:22px;
+padding:25px;
+box-shadow:var(--shadow);
 }
 
-.goal-form {
-display: flex;
-gap: 10px;
-margin-bottom: 25px;
+.goal-form{
+display:flex;
+gap:10px;
+margin-bottom:25px;
 }
 
-.goal-form input {
-flex: 1;
-border: 2px solid var(--border);
-border-radius: 13px;
-padding: 13px;
-font-family: inherit;
+.goal-form input{
+flex:1;
+border:2px solid var(--border);
+border-radius:13px;
+padding:13px;
+font-family:inherit;
 }
 
-.goal {
-display: flex;
-align-items: center;
-gap: 12px;
-
-background: #f7efe5;
-padding: 14px;
-border-radius: 14px;
-
-margin-bottom: 10px;
+.goal{
+display:flex;
+align-items:center;
+gap:12px;
+background:#f7efe5;
+padding:14px;
+border-radius:14px;
+margin-bottom:10px;
 }
 
-.goal.completed {
-opacity: .55;
-text-decoration: line-through;
+.goal.completed{
+opacity:.55;
+text-decoration:line-through;
 }
 
-/* =========================================================
-SPIN WHEEL
-========================================================= */
-
-.wheel-area {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 25px;
+.wheel-area{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:25px;
 }
 
-.wheel {
-width: 310px;
-height: 310px;
-border-radius: 50%;
-
-background:
-conic-gradient(
+.wheel{
+width:310px;
+height:310px;
+border-radius:50%;
+background:conic-gradient(
 #ff9db8 0deg 60deg,
 #ffd966 60deg 120deg,
 #91c8ff 120deg 180deg,
@@ -513,621 +449,389 @@ conic-gradient(
 #ffb878 240deg 300deg,
 #bcaeff 300deg 360deg
 );
-
-border: 10px solid white;
-box-shadow: 0 8px 0 rgba(0,0,0,.12);
-
-position: relative;
-
-transition: transform 3s cubic-bezier(.17,.67,.12,.99);
+border:10px solid white;
+box-shadow:0 8px 0 rgba(0,0,0,.12);
+position:relative;
+transition:transform 3s cubic-bezier(.17,.67,.12,.99);
 }
 
-.wheel::after {
-content: "SPIN";
-position: absolute;
-
-width: 75px;
-height: 75px;
-
-border-radius: 50%;
-
-background: white;
-
-display: flex;
-align-items: center;
-justify-content: center;
-
-font-weight: 900;
-
-top: 50%;
-left: 50%;
-
-transform: translate(-50%,-50%);
+.wheel::after{
+content:"SPIN";
+position:absolute;
+width:75px;
+height:75px;
+border-radius:50%;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 }
 
-.pointer {
-font-size: 35px;
-transform: rotate(180deg);
+.pointer{
+font-size:35px;
+transform:rotate(180deg);
 }
 
-.wheel-result {
-font-size: 23px;
-font-weight: 900;
+.wheel-result{
+font-size:23px;
+font-weight:900;
 }
 
-/* =========================================================
-BUTTON PRESSER
-========================================================= */
+.presser{text-align:center}
 
-.presser {
-text-align: center;
+.press-number{
+font-size:100px;
+font-weight:900;
+color:var(--purple);
 }
 
-.press-number {
-font-size: 100px;
-font-weight: 900;
-color: var(--purple);
-}
-
-.press-button {
-width: 230px;
-height: 230px;
-
-border-radius: 50%;
-border: 10px solid #6252c2;
-
-background: var(--purple);
-
-color: white;
-
-font-size: 28px;
-font-weight: 900;
-
-cursor: pointer;
-
+.press-button{
+width:230px;
+height:230px;
+border-radius:50%;
+border:10px solid #6252c2;
+background:var(--purple);
+color:white;
+font-size:28px;
+font-weight:900;
+cursor:pointer;
 box-shadow:
 0 15px 0 #5142a8,
 0 25px 30px rgba(0,0,0,.15);
-
-transition: .08s;
+transition:.08s;
 }
 
-.press-button:active {
-transform: translateY(12px);
-box-shadow: 0 3px 0 #5142a8;
+.press-button:active{
+transform:translateY(12px);
+box-shadow:0 3px 0 #5142a8;
 }
 
-/* =========================================================
-GAMES
-========================================================= */
-
-.game-grid {
-display: grid;
-grid-template-columns: repeat(3,1fr);
-gap: 18px;
+.game-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
 }
 
-.game-card {
-background: var(--paper);
-border: 2px solid var(--border);
-border-radius: 22px;
-padding: 25px;
-box-shadow: var(--shadow);
-text-align: center;
+.game-card{
+background:var(--paper);
+border:2px solid var(--border);
+border-radius:22px;
+padding:25px;
+box-shadow:var(--shadow);
+text-align:center;
 }
 
-.game-card .game-icon {
-font-size: 50px;
-margin-bottom: 12px;
+.game-card .game-icon{
+font-size:50px;
+margin-bottom:12px;
 }
 
-/* =========================================================
-SNAKE
-========================================================= */
-
-.snake-area {
-display: flex;
-flex-direction: column;
-align-items: center;
+.snake-area{
+display:flex;
+flex-direction:column;
+align-items:center;
 }
 
-#snakeCanvas {
-background: #1e2730;
-border: 8px solid white;
-border-radius: 15px;
-max-width: 100%;
+#snakeCanvas{
+background:#1e2730;
+border:8px solid white;
+border-radius:15px;
+max-width:100%;
+touch-action:none;
 }
 
-.snake-score {
-font-size: 22px;
-font-weight: 900;
-margin: 15px;
+.snake-score{
+font-size:22px;
+font-weight:900;
+margin:15px;
 }
 
-/* =========================================================
-TIMER
-========================================================= */
-
-.timer-card {
-background: #e7ddff;
-border: 2px solid var(--border);
-border-radius: 25px;
-padding: 35px;
-text-align: center;
-box-shadow: var(--shadow);
+.snake-controls{
+display:grid;
+grid-template-columns:repeat(3,55px);
+gap:6px;
+margin-top:12px;
 }
 
-.timer {
-font-size: 75px;
-font-weight: 900;
-margin: 15px;
+.snake-controls button{
+height:45px;
+border:2px solid var(--border);
+background:var(--paper);
+border-radius:10px;
+font-size:20px;
+font-family:inherit;
+font-weight:900;
 }
 
-.timer-controls {
-display: flex;
-justify-content: center;
-gap: 10px;
-flex-wrap: wrap;
+.snake-controls .up{grid-column:2}
+.snake-controls .left{grid-column:1}
+.snake-controls .down{grid-column:2}
+.snake-controls .right{grid-column:3}
+
+.timer-card{
+background:#e7ddff;
+border:2px solid var(--border);
+border-radius:25px;
+padding:35px;
+text-align:center;
+box-shadow:var(--shadow);
 }
 
-/* =========================================================
-FOOTER
-========================================================= */
-
-footer {
-margin-top: 70px;
-padding: 35px;
-text-align: center;
-color: var(--muted);
-border-top: 2px solid var(--border);
+.timer{
+font-size:75px;
+font-weight:900;
+margin:15px;
 }
 
-/* =========================================================
-MOBILE
-========================================================= */
-
-@media(max-width:850px) {
-
-.hero-inner {
-grid-template-columns: 1fr;
+.timer-controls{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
 }
 
+footer{
+margin-top:70px;
+padding:35px;
+text-align:center;
+color:var(--muted);
+border-top:2px solid var(--border);
+}
+
+@media(max-width:850px){
+.hero-inner{grid-template-columns:1fr}
 .dashboard-grid,
 .resource-grid,
-.game-grid {
-grid-template-columns: 1fr 1fr;
+.game-grid{
+grid-template-columns:1fr 1fr;
+}
+.notes-layout{grid-template-columns:1fr}
 }
 
-.notes-layout {
-grid-template-columns: 1fr;
+@media(max-width:600px){
+header{
+flex-direction:column;
+gap:12px;
 }
-}
-
-@media(max-width:600px) {
-
-header {
-flex-direction: column;
-gap: 12px;
-}
-
-.nav {
-justify-content: center;
-}
-
-.hero-card {
-padding: 28px;
-}
-
+.nav{justify-content:center}
+.hero-card{padding:28px}
 .dashboard-grid,
 .resource-grid,
-.game-grid {
-grid-template-columns: 1fr;
+.game-grid{
+grid-template-columns:1fr;
 }
-
-.hero-card h1 {
-font-size: 48px;
+.hero-card h1{font-size:48px}
+.wheel{
+width:260px;
+height:260px;
 }
-
-.wheel {
-width: 260px;
-height: 260px;
+.press-button{
+width:190px;
+height:190px;
 }
-
-.press-button {
-width: 190px;
-height: 190px;
+.resource-form{
+grid-template-columns:1fr;
+}
+.resource-form textarea{
+grid-column:auto;
+}
+.goal-form{
+flex-direction:column;
 }
 }
-
 </style>
 </head>
-
-
 <body>
-
-<!-- =====================================================
-HEADER
-===================================================== -->
-
 <header>
-
 <div class="logo">
 studi<span>.io</span>
 <small>STUDENT HUB</small>
 </div>
-
 <nav>
-
 <button class="active" onclick="showPage('home',this)">
 🏠 Home
 </button>
-
 <button onclick="showPage('resources',this)">
 📚 Resources
 </button>
-
 <button onclick="showPage('notes',this)">
 📝 Notes
 </button>
-
 <button onclick="showPage('goals',this)">
 🎯 Goals
 </button>
-
 <button onclick="showPage('games',this)">
 🎮 Games
 </button>
-
 </nav>
-
 </header>
-
-
 <div class="page">
-
-
-<!-- =====================================================
-HOME
-===================================================== -->
-
 <section id="home" class="active">
-
 <div class="hero">
-
 <div class="hero-inner">
-
 <div class="hero-card">
-
 <h1>
 School stuff,<br>
 <span>made easier.</span>
 </h1>
-
 <p>
 Your little corner of the internet for studying,
 organising your life, taking breaks and actually
 getting things done.
 </p>
-
-<button class="big-button"
-onclick="showPage('resources')">
-
 📚 Explore resources
 
 </button>
-
 </div>
-
-
 <div class="hero-sticker">
-
-<div class="emoji">
-📖
+<div class="emoji">📖</div>
+<h3>You've got this.</h3>
+<p>One thing at a time.</p>
 </div>
-
-<h3>
-You've got this.
-</h3>
-
-<p>
-One thing at a time.
-</p>
-
 </div>
-
 </div>
-
-</div>
-
-
 <div class="dashboard-grid">
-
 <div class="tile">
-
 <div class="tile-icon">📚</div>
-
 <h3>Study Resources</h3>
-
 <p>
 Find useful study material and
 revision resources.
 </p>
 
-<button class="small-button"
-onclick="showPage('resources')">
-
 Browse
 
-</button>
-
 </div>
-
-
 <div class="tile">
-
 <div class="tile-icon">🎡</div>
-
 <h3>Spin the Wheel</h3>
-
 <p>
 Can't decide what to study?
 Let the wheel decide.
 </p>
 
-<button class="small-button"
-onclick="showPage('wheel')">
-
 Spin
 
-</button>
-
 </div>
-
-
 <div class="tile">
-
 <div class="tile-icon">👆</div>
-
 <h3>Button Presser</h3>
-
 <p>
 Completely pointless.
 Completely satisfying.
 </p>
 
-<button class="small-button"
-onclick="showPage('presser')">
-
 Press
 
-</button>
-
 </div>
-
-
 <div class="tile">
-
 <div class="tile-icon">📝</div>
-
 <h3>Study Notes</h3>
-
 <p>
 Write and save your notes
 directly in Studi.io.
 </p>
 
-<button class="small-button"
-onclick="showPage('notes')">
-
 Open notes
 
-</button>
-
 </div>
-
-
 <div class="tile">
-
 <div class="tile-icon">🎯</div>
-
 <h3>My Goals</h3>
-
 <p>
 Keep track of the things
 you want to accomplish.
 </p>
 
-<button class="small-button"
-onclick="showPage('goals')">
-
 Goals
 
-</button>
-
 </div>
-
-
 <div class="tile">
-
 <div class="tile-icon">🎮</div>
-
 <h3>Break Time</h3>
-
 <p>
 Finished studying?
 Play something tiny.
 </p>
 
-<button class="small-button"
-onclick="showPage('games')">
-
 Play
 
-</button>
-
 </div>
-
 </div>
-
-
-<div class="ad-space">
+<!-- AD 1 -->
+<div class="ad-space top-ad">
 ADVERTISEMENT
 </div>
-
-
 <div class="timer-card">
-
 <h2>⏱️ Quick Study Timer</h2>
-
 <div class="timer" id="timer">
 25:00
 </div>
-
 <div class="timer-controls">
-
-<button class="small-button"
-onclick="startTimer()">
 
 ▶ Start
 
-</button>
-
-<button class="small-button"
-onclick="pauseTimer()">
 
 ⏸ Pause
 
-</button>
-
-<button class="small-button"
-onclick="resetTimer()">
 
 ↻ Reset
 
-</button>
-
 </div>
-
 </div>
-
+<!-- AD 2 -->
+<div class="ad-space large-ad">
+ADVERTISEMENT
+</div>
 </section>
-
-
-<!-- =====================================================
-RESOURCES
-===================================================== -->
-
 <section id="resources">
-
 <div class="page-title">
-
 <h2>📚 Study Resources</h2>
-
 <p>
 A little library for when you don't know where to start.
 </p>
+</div>
+<div class="resource-toolbar">
+<h3>➕ Add your own study resource</h3>
+<div class="resource-form">
+<textarea
+id="resourceDescription"
+placeholder="What is this resource useful for?"
+></textarea>
+
+Add Resource
 
 </div>
-
-
-<div class="resource-grid">
-
-<div class="resource-card">
-<span class="subject">MATHS</span>
-<h3>Percentage Practice</h3>
-<p>
-Practise percentages, discounts,
-GST and more.
-</p>
 </div>
-
-<div class="resource-card">
-<span class="subject">SCIENCE</span>
-<h3>Science Revision</h3>
-<p>
-Revision topics, terminology
-and quick study notes.
-</p>
+<div class="resource-grid" id="resourceGrid"></div>
+<!-- AD 3 -->
+<div class="ad-space large-ad">
+ADVERTISEMENT
 </div>
-
-<div class="resource-card">
-<span class="subject">ENGLISH</span>
-<h3>Essay Help</h3>
-<p>
-Planning, paragraphs, evidence
-and writing techniques.
-</p>
-</div>
-
-<div class="resource-card">
-<span class="subject">STUDY</span>
-<h3>Study Techniques</h3>
-<p>
-Flashcards, active recall,
-spaced repetition and more.
-</p>
-</div>
-
-<div class="resource-card">
-<span class="subject">EXAMS</span>
-<h3>Exam Planner</h3>
-<p>
-Break your revision into
-manageable pieces.
-</p>
-</div>
-
-<div class="resource-card">
-<span class="subject">GENERAL</span>
-<h3>Useful Websites</h3>
-<p>
-A collection of useful websites
-for students.
-</p>
-</div>
-
-</div>
-
 </section>
-
-
-<!-- =====================================================
-NOTES
-===================================================== -->
-
 <section id="notes">
-
 <div class="page-title">
-
 <h2>📝 Study Notes</h2>
-
 <p>
 Your notes stay saved on this device.
 </p>
-
 </div>
-
-
 <div class="notes-layout">
-
 <div class="notes-list">
 
-<button onclick="newNote()">
 ➕ New note
-</button>
 
 <div id="noteList"></div>
-
 </div>
-
-
 <div class="note-editor">
-
 <input
-id="noteTitle"
-class="note-title"
-placeholder="Note title..."
->
+id=“noteTitle”
+class=“note-title”
+placeholder=“Note title…”
 
 <textarea
 id="noteText"
@@ -1135,346 +839,215 @@ class="note-text"
 placeholder="Start writing..."
 ></textarea>
 
-<button
-class="big-button"
-onclick="saveNote()">
-
 💾 Save Note
 
-</button>
-
 </div>
-
 </div>
-
 </section>
-
-
-<!-- =====================================================
-GOALS
-===================================================== -->
-
 <section id="goals">
-
 <div class="page-title">
-
 <h2>🎯 My Goals</h2>
-
 <p>
 Small goals. Big progress.
 </p>
-
 </div>
-
-
 <div class="goal-box">
-
 <div class="goal-form">
-
 <input
-id="goalInput"
-placeholder="e.g. Finish my science notes"
->
+id=“goalInput”
+placeholder=“e.g. Finish my science notes”
 
-<button
-class="big-button"
-onclick="addGoal()">
 
 Add
 
-</button>
-
 </div>
-
 <div id="goalList"></div>
-
 </div>
-
 </section>
-
-
-<!-- =====================================================
-WHEEL
-===================================================== -->
-
 <section id="wheel">
-
 <div class="page-title">
-
 <h2>🎡 Spin the Wheel</h2>
-
 <p>
 Let fate decide what you're doing next.
 </p>
-
 </div>
-
-
 <div class="wheel-area">
-
-<div class="pointer">
-🔻
-</div>
-
-<div
-class="wheel"
-id="wheel">
-
-</div>
-
-<button
-class="big-button"
-onclick="spinWheel()">
+<div class="pointer">🔻</div>
+<div class="wheel" id="wheel"></div>
 
 🎡 SPIN
-
-</button>
 
 <div
 class="wheel-result"
 id="wheelResult">
-
 What will you get?
-
 </div>
-
 </div>
-
 </section>
-
-
-<!-- =====================================================
-BUTTON PRESSER
-===================================================== -->
-
 <section id="presser">
-
 <div class="page-title">
-
 <h2>👆 Button Presser</h2>
-
 <p>
 There is absolutely no reason to do this.
 That's the point.
 </p>
-
 </div>
-
-
 <div class="presser">
-
 <div class="press-number"
 id="pressNumber">
-
 0
-
 </div>
 
-<button
-class="press-button"
-onclick="pressButton()">
-
 PRESS
-</button>
 
-<br><br>
-
-<button
-class="small-button"
-onclick="resetPresses()">
 
 Reset
 
-</button>
-
 </div>
-
 </section>
-
-
-<!-- =====================================================
-GAMES
-===================================================== -->
-
 <section id="games">
-
 <div class="page-title">
-
 <h2>🎮 Break Time</h2>
-
 <p>
 Five minutes won't destroy your study session. Probably.
 </p>
-
 </div>
-
-
 <div class="game-grid">
-
 <div class="game-card">
-
 <div class="game-icon">🐍</div>
-
 <h3>Snake</h3>
-
-<p>
-The classic.
-</p>
-
-<button
-class="big-button"
-onclick="startSnake()">
+<p>The classic.</p>
 
 Play Snake
 
-</button>
-
 </div>
-
-
 <div class="game-card">
-
 <div class="game-icon">🎯</div>
-
 <h3>Coming Soon</h3>
-
 <p>
 More tiny games are coming.
 </p>
-
 </div>
-
-
 <div class="game-card">
-
 <div class="game-icon">🧠</div>
-
 <h3>Coming Soon</h3>
-
 <p>
 Something mildly addictive.
 </p>
-
 </div>
-
 </div>
-
-
-<div class="snake-area" id="snakeArea"
-style="display:none; margin-top:40px;">
-
+<div
+class="snake-area"
+id="snakeArea"
+style="display:none;margin-top:40px;">
 <div class="snake-score">
 Score: <span id="snakeScore">0</span>
 </div>
+<div class="snake-controls">
 
-<canvas
-id="snakeCanvas"
-width="400"
-height="400">
-</canvas>
+↑
 
+
+←
+
+
+↓
+
+
+→
+
+</div>
 <br>
-
-<button
-class="small-button"
-onclick="startSnake()">
 
 Restart Snake
 
-</button>
-
 <p style="margin-top:15px;color:var(--muted);">
-Use the arrow keys.
+Use the arrow keys or buttons.
 </p>
-
 </div>
-
 </section>
-
-
 <footer>
-
 studi.io © 2026
-<br><br>
+
 A little place to study, organise and procrastinate responsibly. 🌱
 
 </footer>
-
 </div>
-
-
 <script>
 
-/* =========================================================
+/* =========================
 PAGE NAVIGATION
-========================================================= */
+========================= */
 
-function showPage(page, button) {
+function showPage(page,button){
 
 document.querySelectorAll("section")
-.forEach(section =>
-section.classList.remove("active")
-);
+.forEach(section=>{
+section.classList.remove("active");
+});
 
-const target = document.getElementById(page);
+const target=document.getElementById(page);
 
-if (target) {
+if(target){
 target.classList.add("active");
 }
 
 document.querySelectorAll(".nav button")
-.forEach(btn =>
-btn.classList.remove("active")
-);
+.forEach(btn=>{
+btn.classList.remove("active");
+});
 
-if (button) {
+if(button){
 button.classList.add("active");
 }
 
 window.scrollTo({
-top: 0,
-behavior: "smooth"
+top:0,
+behavior:"smooth"
 });
+
 }
 
 
-/* =========================================================
-STUDY TIMER
-========================================================= */
+/* =========================
+TIMER
+========================= */
 
-let timerSeconds = 25 * 60;
-let timerInterval = null;
+let timerSeconds=1500;
+let timerInterval=null;
 
-function updateTimer() {
+function updateTimer(){
 
-const minutes =
-Math.floor(timerSeconds / 60)
+const minutes=
+Math.floor(timerSeconds/60)
 .toString()
 .padStart(2,"0");
 
-const seconds =
-(timerSeconds % 60)
+const seconds=
+(timerSeconds%60)
 .toString()
 .padStart(2,"0");
 
-document.getElementById("timer").textContent =
+document.getElementById("timer").textContent=
 `${minutes}:${seconds}`;
+
 }
 
-function startTimer() {
+function startTimer(){
 
-if (timerInterval) return;
+if(timerInterval)return;
 
-timerInterval = setInterval(() => {
+timerInterval=setInterval(()=>{
 
-if (timerSeconds <= 0) {
+if(timerSeconds<=0){
 
 clearInterval(timerInterval);
-timerInterval = null;
+timerInterval=null;
 
 alert("🎉 Study session finished!");
 
 return;
+
 }
 
 timerSeconds--;
@@ -1482,68 +1055,73 @@ timerSeconds--;
 updateTimer();
 
 },1000);
+
 }
 
-function pauseTimer() {
+function pauseTimer(){
 
 clearInterval(timerInterval);
-timerInterval = null;
+timerInterval=null;
+
 }
 
-function resetTimer() {
+function resetTimer(){
 
 pauseTimer();
 
-timerSeconds = 25 * 60;
+timerSeconds=1500;
 
 updateTimer();
+
 }
 
 
-/* =========================================================
+/* =========================
 BUTTON PRESSER
-========================================================= */
+========================= */
 
-let presses =
-Number(localStorage.getItem("studiPresses")) || 0;
+let presses=
+Number(localStorage.getItem("studiPresses"))||0;
 
-document.getElementById("pressNumber").textContent =
+document.getElementById("pressNumber").textContent=
 presses;
 
-function pressButton() {
+function pressButton(){
 
 presses++;
 
-document.getElementById("pressNumber").textContent =
+document.getElementById("pressNumber").textContent=
 presses;
 
 localStorage.setItem(
 "studiPresses",
 presses
 );
+
 }
 
-function resetPresses() {
+function resetPresses(){
 
-presses = 0;
+presses=0;
 
-document.getElementById("pressNumber").textContent =
-0;
+document.getElementById("pressNumber").textContent=0;
 
 localStorage.setItem(
 "studiPresses",
 0
 );
+
 }
 
 
-/* =========================================================
-SPIN WHEEL
-========================================================= */
+/* =========================
+WHEEL
+========================= */
 
-let wheelRotation = 0;
+let wheelRotation=0;
+let wheelSpinning=false;
 
-const wheelOptions = [
+const wheelOptions=[
 "Maths",
 "Science",
 "English",
@@ -1552,114 +1130,139 @@ const wheelOptions = [
 "Surprise!"
 ];
 
-function spinWheel() {
+function spinWheel(){
 
-const wheel =
+if(wheelSpinning)return;
+
+wheelSpinning=true;
+
+const wheel=
 document.getElementById("wheel");
 
-const random =
-Math.floor(Math.random() * wheelOptions.length);
+const random=
+Math.floor(
+Math.random()*wheelOptions.length
+);
 
-wheelRotation +=
-1440 + random * 60;
+wheelRotation+=
+1440+(random*60);
 
-wheel.style.transform =
+wheel.style.transform=
 `rotate(${wheelRotation}deg)`;
 
-setTimeout(() => {
+setTimeout(()=>{
 
 document.getElementById("wheelResult")
-.textContent =
-"🎉 " + wheelOptions[random];
+.textContent=
+"🎉 "+wheelOptions[random];
+
+wheelSpinning=false;
 
 },3000);
+
 }
 
 
-/* =========================================================
+/* =========================
 NOTES
-========================================================= */
+========================= */
 
-let notes =
+let notes=
 JSON.parse(
-localStorage.getItem("studiNotes")
-) || [];
+localStorage.getItem("studiNotes")||"[]"
+);
 
-let currentNote = null;
+let currentNote=null;
 
-function displayNotes() {
+function displayNotes(){
 
-const list =
+const list=
 document.getElementById("noteList");
 
-list.innerHTML = "";
+list.innerHTML="";
 
-notes.forEach((note,index) => {
+if(notes.length===0){
 
-const button =
+list.innerHTML=
+'<p style="color:var(--muted);line-height:1.5">No notes yet. Make your first one!</p>';
+
+return;
+
+}
+
+notes.forEach((note,index)=>{
+
+const button=
 document.createElement("button");
 
-button.textContent =
-"📝 " + note.title;
+button.className="note-item";
 
-button.onclick = () =>
+button.textContent=
+"📝 "+note.title;
+
+button.onclick=()=>{
 openNote(index);
+};
 
 list.appendChild(button);
 
 });
+
 }
 
-function newNote() {
+function newNote(){
 
-currentNote = null;
+currentNote=null;
 
+document.getElementById("noteTitle").value="";
+document.getElementById("noteText").value="";
+
+document.getElementById("noteTitle").focus();
+
+}
+
+function openNote(index){
+
+currentNote=index;
+
+document.getElementById("noteTitle").value=
+notes[index].title;
+
+document.getElementById("noteText").value=
+notes[index].text;
+
+}
+
+function saveNote(){
+
+const title=
 document.getElementById("noteTitle")
-.value = "";
+.value.trim();
 
+const text=
 document.getElementById("noteText")
-.value = "";
-}
+.value;
 
-function openNote(index) {
-
-currentNote = index;
-
-document.getElementById("noteTitle")
-.value = notes[index].title;
-
-document.getElementById("noteText")
-.value = notes[index].text;
-}
-
-function saveNote() {
-
-const title =
-document.getElementById("noteTitle").value.trim();
-
-const text =
-document.getElementById("noteText").value;
-
-if (!title) {
+if(!title){
 
 alert("Give your note a title first!");
 
 return;
+
 }
 
-if (currentNote === null) {
-
-notes.push({
-title: title,
-text: text
-});
-
-} else {
-
-notes[currentNote] = {
-title: title,
-text: text
+const note={
+title:title,
+text:text
 };
+
+if(currentNote===null){
+
+notes.push(note);
+
+}else{
+
+notes[currentNote]=note;
 
 }
 
@@ -1671,98 +1274,120 @@ JSON.stringify(notes)
 displayNotes();
 
 alert("✅ Note saved!");
+
 }
 
 displayNotes();
 
 
-/* =========================================================
+/* =========================
 GOALS
-========================================================= */
+========================= */
 
-let goals =
+let goals=
 JSON.parse(
-localStorage.getItem("studiGoals")
-) || [];
+localStorage.getItem("studiGoals")||"[]"
+);
 
-function displayGoals() {
+function displayGoals(){
 
-const list =
+const list=
 document.getElementById("goalList");
 
-list.innerHTML = "";
+list.innerHTML="";
 
-goals.forEach((goal,index) => {
+if(goals.length===0){
 
-const div =
+list.innerHTML=
+'<p style="color:var(--muted)">No goals yet — add one above!</p>';
+
+return;
+
+}
+
+goals.forEach((goal,index)=>{
+
+const div=
 document.createElement("div");
 
-div.className =
-"goal" +
-(goal.completed ? " completed" : "");
+div.className=
+"goal"+
+(goal.completed?" completed":"");
 
-div.innerHTML = `
+const checkbox=
+document.createElement("input");
 
-<input
-type="checkbox"
-${goal.completed ? "checked" : ""}
-onchange="toggleGoal(${index})"
->
+checkbox.type="checkbox";
+checkbox.checked=goal.completed;
 
-<span>${goal.text}</span>
+checkbox.onchange=()=>{
+toggleGoal(index);
+};
 
-<button
-class="small-button"
-onclick="deleteGoal(${index})"
-style="margin-left:auto">
+const span=
+document.createElement("span");
 
-🗑️
+span.textContent=goal.text;
 
-</button>
+const deleteButton=
+document.createElement("button");
 
-`;
+deleteButton.className="small-button";
+deleteButton.textContent="🗑️";
+deleteButton.style.marginLeft="auto";
+
+deleteButton.onclick=()=>{
+deleteGoal(index);
+};
+
+div.appendChild(checkbox);
+div.appendChild(span);
+div.appendChild(deleteButton);
 
 list.appendChild(div);
 
 });
+
 }
 
-function addGoal() {
+function addGoal(){
 
-const input =
+const input=
 document.getElementById("goalInput");
 
-const text =
-input.value.trim();
+const text=input.value.trim();
 
-if (!text) return;
+if(!text)return;
 
 goals.push({
-text: text,
-completed: false
+text:text,
+completed:false
 });
 
-input.value = "";
+input.value="";
 
 saveGoals();
+
 }
 
-function toggleGoal(index) {
+function toggleGoal(index){
 
-goals[index].completed =
+goals[index].completed=
 !goals[index].completed;
 
 saveGoals();
+
 }
 
-function deleteGoal(index) {
+function deleteGoal(index){
 
 goals.splice(index,1);
 
 saveGoals();
+
 }
 
-function saveGoals() {
+function saveGoals(){
 
 localStorage.setItem(
 "studiGoals",
@@ -1770,132 +1395,414 @@ JSON.stringify(goals)
 );
 
 displayGoals();
+
 }
 
 displayGoals();
 
 
-/* =========================================================
-SNAKE
-========================================================= */
+/* =========================
+RESOURCES
+========================= */
 
-const canvas =
-document.getElementById("snakeCanvas");
+const defaultResources=[
 
-const ctx =
-canvas.getContext("2d");
+{
+title:"Percentage Practice",
+subject:"MATHS",
+description:"Practise percentages, discounts, GST and more.",
+link:""
+},
 
-const grid = 20;
+{
+title:"Science Revision",
+subject:"SCIENCE",
+description:"Revision topics, terminology and quick study notes.",
+link:""
+},
 
-let snake;
-let food;
-let direction;
-let snakeInterval;
-let snakeScore = 0;
+{
+title:"Essay Help",
+subject:"ENGLISH",
+description:"Planning, paragraphs, evidence and writing techniques.",
+link:""
+},
 
-function startSnake() {
+{
+title:"Study Techniques",
+subject:"STUDY",
+description:"Flashcards, active recall, spaced repetition and more.",
+link:""
+},
 
-document.getElementById("snakeArea")
-.style.display = "flex";
+{
+title:"Exam Planner",
+subject:"EXAMS",
+description:"Break your revision into manageable pieces.",
+link:""
+},
 
-snake = [
-{x: 200, y: 200},
-{x: 180, y: 200},
-{x: 160, y: 200}
+{
+title:"Useful Websites",
+subject:"GENERAL",
+description:"A collection of useful websites for students.",
+link:""
+}
+
 ];
 
-direction = {
-x: grid,
-y: 0
+let resources=
+JSON.parse(
+localStorage.getItem("studiResources")
+);
+
+if(!resources){
+resources=defaultResources;
+}
+
+function escapeHTML(text){
+
+const div=document.createElement("div");
+
+div.textContent=text;
+
+return div.innerHTML;
+
+}
+
+function displayResources(){
+
+const grid=
+document.getElementById("resourceGrid");
+
+grid.innerHTML="";
+
+resources.forEach((resource,index)=>{
+
+const card=
+document.createElement("div");
+
+card.className="resource-card";
+
+const subject=
+document.createElement("span");
+
+subject.className="subject";
+
+subject.textContent=
+resource.subject||"GENERAL";
+
+const title=
+document.createElement("h3");
+
+title.textContent=resource.title;
+
+const description=
+document.createElement("p");
+
+description.textContent=
+resource.description;
+
+card.appendChild(subject);
+card.appendChild(title);
+card.appendChild(description);
+
+if(
+resource.link &&
+/^https?:\/\//i.test(resource.link)
+){
+
+const link=
+document.createElement("a");
+
+link.href=resource.link;
+link.target="_blank";
+link.rel="noopener noreferrer";
+
+link.textContent="Open resource ↗";
+
+card.appendChild(link);
+
+}
+
+const deleteButton=
+document.createElement("button");
+
+deleteButton.className=
+"small-button delete-resource";
+
+deleteButton.textContent=
+"Remove";
+
+deleteButton.onclick=()=>{
+deleteResource(index);
 };
 
-snakeScore = 0;
+card.appendChild(deleteButton);
+
+grid.appendChild(card);
+
+});
+
+}
+
+function addResource(){
+
+const title=
+document.getElementById("resourceTitle")
+.value.trim();
+
+const subject=
+document.getElementById("resourceSubject")
+.value.trim()||"GENERAL";
+
+const description=
+document.getElementById("resourceDescription")
+.value.trim();
+
+let link=
+document.getElementById("resourceLink")
+.value.trim();
+
+if(!title||!description){
+
+alert(
+"Add a resource name and description first!"
+);
+
+return;
+
+}
+
+if(
+link &&
+!/^https?:\/\//i.test(link)
+){
+
+link="https://"+link;
+
+}
+
+resources.push({
+title:title,
+subject:subject.toUpperCase(),
+description:description,
+link:link
+});
+
+localStorage.setItem(
+"studiResources",
+JSON.stringify(resources)
+);
+
+document.getElementById("resourceTitle").value="";
+document.getElementById("resourceSubject").value="";
+document.getElementById("resourceDescription").value="";
+document.getElementById("resourceLink").value="";
+
+displayResources();
+
+}
+
+function deleteResource(index){
+
+resources.splice(index,1);
+
+localStorage.setItem(
+"studiResources",
+JSON.stringify(resources)
+);
+
+displayResources();
+
+}
+
+displayResources();
+
+
+/* =========================
+SNAKE
+========================= */
+
+const canvas=
+document.getElementById("snakeCanvas");
+
+const ctx=
+canvas.getContext("2d");
+
+const grid=20;
+
+let snake=[];
+let food={x:200,y:200};
+
+let direction={
+x:grid,
+y:0
+};
+
+let nextDirection={
+x:grid,
+y:0
+};
+
+let snakeInterval=null;
+let snakeScore=0;
+let snakeRunning=false;
+
+function startSnake(){
+
+document.getElementById("snakeArea")
+.style.display="flex";
+
+snake=[
+{x:200,y:200},
+{x:180,y:200},
+{x:160,y:200}
+];
+
+direction={
+x:grid,
+y:0
+};
+
+nextDirection={
+x:grid,
+y:0
+};
+
+snakeScore=0;
+snakeRunning=true;
 
 document.getElementById("snakeScore")
-.textContent = snakeScore;
+.textContent=snakeScore;
 
 placeFood();
 
 clearInterval(snakeInterval);
 
-snakeInterval =
-setInterval(updateSnake,100);
+snakeInterval=
+setInterval(updateSnake,110);
+
+drawSnake();
+
+document.getElementById("snakeCanvas")
+.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
 }
 
-function placeFood() {
+function placeFood(){
 
-food = {
+do{
 
+food={
 x:
 Math.floor(
-Math.random() *
-(canvas.width / grid)
-) * grid,
+Math.random()*(canvas.width/grid)
+)*grid,
 
 y:
 Math.floor(
-Math.random() *
-(canvas.height / grid)
-) * grid
+Math.random()*(canvas.height/grid)
+)*grid
 };
+
+}
+while(
+snake.some(
+part=>
+part.x===food.x &&
+part.y===food.y
+)
+);
+
 }
 
-function updateSnake() {
+function changeDirection(x,y){
 
-const head = {
-x: snake[0].x + direction.x,
-y: snake[0].y + direction.y
-};
+if(!snakeRunning)return;
 
-if (
-head.x < 0 ||
-head.x >= canvas.width ||
-head.y < 0 ||
-head.y >= canvas.height
-) {
-
-endSnake();
+if(
+x===-direction.x &&
+y===-direction.y
+){
 return;
 }
 
-for (let part of snake) {
+nextDirection={
+x:x,
+y:y
+};
 
-if (
-head.x === part.x &&
-head.y === part.y
-) {
+}
+
+function updateSnake(){
+
+direction=nextDirection;
+
+const head={
+x:snake[0].x+direction.x,
+y:snake[0].y+direction.y
+};
+
+if(
+head.x<0 ||
+head.x>=canvas.width ||
+head.y<0 ||
+head.y>=canvas.height
+){
 
 endSnake();
 return;
+
 }
+
+const ateFood=
+head.x===food.x &&
+head.y===food.y;
+
+const bodyToCheck=
+ateFood ? snake : snake.slice(0,-1);
+
+if(
+bodyToCheck.some(
+part=>
+part.x===head.x &&
+part.y===head.y
+)
+){
+
+endSnake();
+return;
+
 }
 
 snake.unshift(head);
 
-if (
-head.x === food.x &&
-head.y === food.y
-) {
+if(ateFood){
 
 snakeScore++;
 
 document.getElementById("snakeScore")
-.textContent = snakeScore;
+.textContent=snakeScore;
 
 placeFood();
 
-} else {
+}else{
 
 snake.pop();
 
 }
 
 drawSnake();
+
 }
 
-function drawSnake() {
+function drawSnake(){
 
-ctx.fillStyle = "#1e2730";
+ctx.fillStyle="#1e2730";
 
 ctx.fillRect(
 0,
@@ -1904,95 +1811,83 @@ canvas.width,
 canvas.height
 );
 
-ctx.fillStyle = "#ff9db8";
+ctx.fillStyle="#ff9db8";
 
 ctx.fillRect(
 food.x,
 food.y,
-grid - 2,
-grid - 2
+grid-2,
+grid-2
 );
 
-ctx.fillStyle = "#9bd9a5";
+snake.forEach((part,index)=>{
 
-snake.forEach(part => {
+ctx.fillStyle=
+index===0
+?"#ffd966"
+:"#9bd9a5";
 
 ctx.fillRect(
 part.x,
 part.y,
-grid - 2,
-grid - 2
+grid-2,
+grid-2
 );
 
 });
+
 }
 
-function endSnake() {
+function endSnake(){
 
 clearInterval(snakeInterval);
 
+snakeInterval=null;
+snakeRunning=false;
+
+setTimeout(()=>{
+
 alert(
-"🐍 Game over! Score: " +
+"🐍 Game over! Score: "+
 snakeScore
 );
+
+},50);
+
 }
 
 document.addEventListener(
 "keydown",
-event => {
+event=>{
 
-if (
-event.key === "ArrowUp" &&
-direction.y === 0
-) {
-
-direction = {
-x: 0,
-y: -grid
-};
-
+if(
+!["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"]
+.includes(event.key)
+){
+return;
 }
 
-if (
-event.key === "ArrowDown" &&
-direction.y === 0
-) {
+event.preventDefault();
 
-direction = {
-x: 0,
-y: grid
-};
-
+if(event.key==="ArrowUp"){
+changeDirection(0,-grid);
 }
 
-if (
-event.key === "ArrowLeft" &&
-direction.x === 0
-) {
-
-direction = {
-x: -grid,
-y: 0
-};
-
+if(event.key==="ArrowDown"){
+changeDirection(0,grid);
 }
 
-if (
-event.key === "ArrowRight" &&
-direction.x === 0
-) {
+if(event.key==="ArrowLeft"){
+changeDirection(-grid,0);
+}
 
-direction = {
-x: grid,
-y: 0
-};
-
+if(event.key==="ArrowRight"){
+changeDirection(grid,0);
 }
 
 }
 );
 
 </script>
-
 </body>
 </html>

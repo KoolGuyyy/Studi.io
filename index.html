@@ -975,153 +975,148 @@ A little place to study, organise and procrastinate responsibly. 🌱
 </div>
 <script>
 
-/* =========================
+/* =========================================================
 PAGE NAVIGATION
-========================= */
+========================================================= */
 
-function showPage(page,button){
+function showPage(page, button) {
 
-document.querySelectorAll("section")
-.forEach(section=>{
+document.querySelectorAll("section").forEach(section => {
 section.classList.remove("active");
 });
 
-const target=document.getElementById(page);
+const target = document.getElementById(page);
 
-if(target){
+if (target) {
 target.classList.add("active");
 }
 
-document.querySelectorAll(".nav button")
-.forEach(btn=>{
+document.querySelectorAll(".nav button").forEach(btn => {
 btn.classList.remove("active");
 });
 
-if(button){
+if (button) {
 button.classList.add("active");
 }
 
 window.scrollTo({
-top:0,
-behavior:"smooth"
+top: 0,
+behavior: "smooth"
 });
-
 }
 
 
-/* =========================
-TIMER
-========================= */
+/* =========================================================
+STUDY TIMER
+========================================================= */
 
-let timerSeconds=1500;
-let timerInterval=null;
+let timerSeconds = 25 * 60;
+let timerInterval = null;
 
-function updateTimer(){
+function updateTimer() {
 
-const minutes=
-Math.floor(timerSeconds/60)
+const timer = document.getElementById("timer");
+
+if (!timer) return;
+
+const minutes = Math.floor(timerSeconds / 60)
 .toString()
-.padStart(2,"0");
+.padStart(2, "0");
 
-const seconds=
-(timerSeconds%60)
+const seconds = (timerSeconds % 60)
 .toString()
-.padStart(2,"0");
+.padStart(2, "0");
 
-document.getElementById("timer").textContent=
-`${minutes}:${seconds}`;
-
+timer.textContent = `${minutes}:${seconds}`;
 }
 
-function startTimer(){
+function startTimer() {
 
-if(timerInterval)return;
+if (timerInterval) return;
 
-timerInterval=setInterval(()=>{
+timerInterval = setInterval(() => {
 
-if(timerSeconds<=0){
+if (timerSeconds <= 0) {
 
 clearInterval(timerInterval);
-timerInterval=null;
+timerInterval = null;
 
 alert("🎉 Study session finished!");
 
 return;
-
 }
 
 timerSeconds--;
-
 updateTimer();
 
-},1000);
-
+}, 1000);
 }
 
-function pauseTimer(){
+function pauseTimer() {
 
 clearInterval(timerInterval);
-timerInterval=null;
-
+timerInterval = null;
 }
 
-function resetTimer(){
+function resetTimer() {
 
 pauseTimer();
 
-timerSeconds=1500;
+timerSeconds = 25 * 60;
 
 updateTimer();
-
 }
 
 
-/* =========================
+/* =========================================================
 BUTTON PRESSER
-========================= */
+========================================================= */
 
-let presses=
-Number(localStorage.getItem("studiPresses"))||0;
+let presses = Number(
+localStorage.getItem("studiPresses") || 0
+);
 
-document.getElementById("pressNumber").textContent=
-presses;
+function updatePressNumber() {
 
-function pressButton(){
+const number = document.getElementById("pressNumber");
+
+if (number) {
+number.textContent = presses;
+}
+}
+
+function pressButton() {
 
 presses++;
 
-document.getElementById("pressNumber").textContent=
-presses;
+updatePressNumber();
 
 localStorage.setItem(
 "studiPresses",
 presses
 );
-
 }
 
-function resetPresses(){
+function resetPresses() {
 
-presses=0;
+presses = 0;
 
-document.getElementById("pressNumber").textContent=0;
+updatePressNumber();
 
 localStorage.setItem(
 "studiPresses",
-0
+"0"
 );
-
 }
 
 
-/* =========================
-WHEEL
-========================= */
+/* =========================================================
+SPIN WHEEL
+========================================================= */
 
-let wheelRotation=0;
-let wheelSpinning=false;
+let wheelRotation = 0;
 
-const wheelOptions=[
+const wheelOptions = [
 "Maths",
 "Science",
 "English",
@@ -1130,140 +1125,131 @@ const wheelOptions=[
 "Surprise!"
 ];
 
-function spinWheel(){
+function spinWheel() {
 
-if(wheelSpinning)return;
+const wheel = document.getElementById("wheel");
+const result = document.getElementById("wheelResult");
 
-wheelSpinning=true;
+if (!wheel || !result) return;
 
-const wheel=
-document.getElementById("wheel");
+const random =
+Math.floor(Math.random() * wheelOptions.length);
 
-const random=
-Math.floor(
-Math.random()*wheelOptions.length
-);
+/*
+Important:
+We rotate ONLY the wheel.
+Nothing else on the page is affected.
+*/
 
-wheelRotation+=
-1440+(random*60);
+wheelRotation += 1440 + random * 60;
 
-wheel.style.transform=
+wheel.style.transform =
 `rotate(${wheelRotation}deg)`;
 
-setTimeout(()=>{
+result.textContent = "🎡 Spinning...";
 
-document.getElementById("wheelResult")
-.textContent=
-"🎉 "+wheelOptions[random];
+setTimeout(() => {
 
-wheelSpinning=false;
+result.textContent =
+"🎉 " + wheelOptions[random];
 
-},3000);
-
+}, 3000);
 }
 
 
-/* =========================
+/* =========================================================
 NOTES
-========================= */
+========================================================= */
 
-let notes=
+let notes = [];
+
+try {
+notes =
 JSON.parse(
-localStorage.getItem("studiNotes")||"[]"
+localStorage.getItem("studiNotes") || "[]"
 );
+} catch {
+notes = [];
+}
 
-let currentNote=null;
+let currentNote = null;
 
-function displayNotes(){
+function displayNotes() {
 
-const list=
+const list =
 document.getElementById("noteList");
 
-list.innerHTML="";
+if (!list) return;
 
-if(notes.length===0){
+list.innerHTML = "";
 
-list.innerHTML=
-'<p style="color:var(--muted);line-height:1.5">No notes yet. Make your first one!</p>';
+notes.forEach((note, index) => {
 
-return;
-
-}
-
-notes.forEach((note,index)=>{
-
-const button=
+const button =
 document.createElement("button");
 
-button.className="note-item";
+button.textContent =
+"📝 " + note.title;
 
-button.textContent=
-"📝 "+note.title;
-
-button.onclick=()=>{
+button.onclick = function() {
 openNote(index);
 };
 
 list.appendChild(button);
-
 });
-
 }
 
-function newNote(){
+function newNote() {
 
-currentNote=null;
+currentNote = null;
 
-document.getElementById("noteTitle").value="";
-document.getElementById("noteText").value="";
+document.getElementById("noteTitle").value = "";
+document.getElementById("noteText").value = "";
 
 document.getElementById("noteTitle").focus();
-
 }
 
-function openNote(index){
+function openNote(index) {
 
-currentNote=index;
+if (!notes[index]) return;
 
-document.getElementById("noteTitle").value=
+currentNote = index;
+
+document.getElementById("noteTitle").value =
 notes[index].title;
 
-document.getElementById("noteText").value=
+document.getElementById("noteText").value =
 notes[index].text;
-
 }
 
-function saveNote(){
+function saveNote() {
 
-const title=
-document.getElementById("noteTitle")
-.value.trim();
+const title =
+document.getElementById("noteTitle").value.trim();
 
-const text=
-document.getElementById("noteText")
-.value;
+const text =
+document.getElementById("noteText").value;
 
-if(!title){
+if (!title) {
 
 alert("Give your note a title first!");
 
 return;
-
 }
 
-const note={
-title:title,
-text:text
+if (currentNote === null) {
+
+notes.push({
+title: title,
+text: text
+});
+
+} else {
+
+notes[currentNote] = {
+title: title,
+text: text
 };
-
-if(currentNote===null){
-
-notes.push(note);
-
-}else{
-
-notes[currentNote]=note;
-
 }
 
 localStorage.setItem(
@@ -1274,69 +1260,72 @@ JSON.stringify(notes)
 displayNotes();
 
 alert("✅ Note saved!");
-
 }
 
 displayNotes();
 
 
-/* =========================
+/* =========================================================
 GOALS
-========================= */
+========================================================= */
 
-let goals=
+let goals = [];
+
+try {
+goals =
 JSON.parse(
-localStorage.getItem("studiGoals")||"[]"
+localStorage.getItem("studiGoals") || "[]"
 );
-
-function displayGoals(){
-
-const list=
-document.getElementById("goalList");
-
-list.innerHTML="";
-
-if(goals.length===0){
-
-list.innerHTML=
-'<p style="color:var(--muted)">No goals yet — add one above!</p>';
-
-return;
-
+} catch {
+goals = [];
 }
 
-goals.forEach((goal,index)=>{
+function displayGoals() {
 
-const div=
+const list =
+document.getElementById("goalList");
+
+if (!list) return;
+
+list.innerHTML = "";
+
+goals.forEach((goal, index) => {
+
+const div =
 document.createElement("div");
 
-div.className=
-"goal"+
-(goal.completed?" completed":"");
+div.className =
+"goal" +
+(goal.completed ? " completed" : "");
 
-const checkbox=
+/*
+Build the goal safely instead of inserting
+the user's text directly into innerHTML.
+*/
+
+const checkbox =
 document.createElement("input");
 
-checkbox.type="checkbox";
-checkbox.checked=goal.completed;
+checkbox.type = "checkbox";
+checkbox.checked = goal.completed;
 
-checkbox.onchange=()=>{
+checkbox.onchange = function() {
 toggleGoal(index);
 };
 
-const span=
+const span =
 document.createElement("span");
 
-span.textContent=goal.text;
+span.textContent = goal.text;
 
-const deleteButton=
+const deleteButton =
 document.createElement("button");
 
-deleteButton.className="small-button";
-deleteButton.textContent="🗑️";
-deleteButton.style.marginLeft="auto";
+deleteButton.className = "small-button";
+deleteButton.textContent = "🗑️";
+deleteButton.style.marginLeft = "auto";
 
-deleteButton.onclick=()=>{
+deleteButton.onclick = function() {
 deleteGoal(index);
 };
 
@@ -1345,49 +1334,49 @@ div.appendChild(span);
 div.appendChild(deleteButton);
 
 list.appendChild(div);
-
 });
-
 }
 
-function addGoal(){
+function addGoal() {
 
-const input=
+const input =
 document.getElementById("goalInput");
 
-const text=input.value.trim();
+const text =
+input.value.trim();
 
-if(!text)return;
+if (!text) return;
 
 goals.push({
-text:text,
-completed:false
+text: text,
+completed: false
 });
 
-input.value="";
+input.value = "";
 
 saveGoals();
-
 }
 
-function toggleGoal(index){
+function toggleGoal(index) {
 
-goals[index].completed=
+if (!goals[index]) return;
+
+goals[index].completed =
 !goals[index].completed;
 
 saveGoals();
-
 }
 
-function deleteGoal(index){
+function deleteGoal(index) {
 
-goals.splice(index,1);
+if (!goals[index]) return;
+
+goals.splice(index, 1);
 
 saveGoals();
-
 }
 
-function saveGoals(){
+function saveGoals() {
 
 localStorage.setItem(
 "studiGoals",
@@ -1395,414 +1384,175 @@ JSON.stringify(goals)
 );
 
 displayGoals();
-
 }
 
 displayGoals();
 
 
-/* =========================
-RESOURCES
-========================= */
-
-const defaultResources=[
-
-{
-title:"Percentage Practice",
-subject:"MATHS",
-description:"Practise percentages, discounts, GST and more.",
-link:""
-},
-
-{
-title:"Science Revision",
-subject:"SCIENCE",
-description:"Revision topics, terminology and quick study notes.",
-link:""
-},
-
-{
-title:"Essay Help",
-subject:"ENGLISH",
-description:"Planning, paragraphs, evidence and writing techniques.",
-link:""
-},
-
-{
-title:"Study Techniques",
-subject:"STUDY",
-description:"Flashcards, active recall, spaced repetition and more.",
-link:""
-},
-
-{
-title:"Exam Planner",
-subject:"EXAMS",
-description:"Break your revision into manageable pieces.",
-link:""
-},
-
-{
-title:"Useful Websites",
-subject:"GENERAL",
-description:"A collection of useful websites for students.",
-link:""
-}
-
-];
-
-let resources=
-JSON.parse(
-localStorage.getItem("studiResources")
-);
-
-if(!resources){
-resources=defaultResources;
-}
-
-function escapeHTML(text){
-
-const div=document.createElement("div");
-
-div.textContent=text;
-
-return div.innerHTML;
-
-}
-
-function displayResources(){
-
-const grid=
-document.getElementById("resourceGrid");
-
-grid.innerHTML="";
-
-resources.forEach((resource,index)=>{
-
-const card=
-document.createElement("div");
-
-card.className="resource-card";
-
-const subject=
-document.createElement("span");
-
-subject.className="subject";
-
-subject.textContent=
-resource.subject||"GENERAL";
-
-const title=
-document.createElement("h3");
-
-title.textContent=resource.title;
-
-const description=
-document.createElement("p");
-
-description.textContent=
-resource.description;
-
-card.appendChild(subject);
-card.appendChild(title);
-card.appendChild(description);
-
-if(
-resource.link &&
-/^https?:\/\//i.test(resource.link)
-){
-
-const link=
-document.createElement("a");
-
-link.href=resource.link;
-link.target="_blank";
-link.rel="noopener noreferrer";
-
-link.textContent="Open resource ↗";
-
-card.appendChild(link);
-
-}
-
-const deleteButton=
-document.createElement("button");
-
-deleteButton.className=
-"small-button delete-resource";
-
-deleteButton.textContent=
-"Remove";
-
-deleteButton.onclick=()=>{
-deleteResource(index);
-};
-
-card.appendChild(deleteButton);
-
-grid.appendChild(card);
-
-});
-
-}
-
-function addResource(){
-
-const title=
-document.getElementById("resourceTitle")
-.value.trim();
-
-const subject=
-document.getElementById("resourceSubject")
-.value.trim()||"GENERAL";
-
-const description=
-document.getElementById("resourceDescription")
-.value.trim();
-
-let link=
-document.getElementById("resourceLink")
-.value.trim();
-
-if(!title||!description){
-
-alert(
-"Add a resource name and description first!"
-);
-
-return;
-
-}
-
-if(
-link &&
-!/^https?:\/\//i.test(link)
-){
-
-link="https://"+link;
-
-}
-
-resources.push({
-title:title,
-subject:subject.toUpperCase(),
-description:description,
-link:link
-});
-
-localStorage.setItem(
-"studiResources",
-JSON.stringify(resources)
-);
-
-document.getElementById("resourceTitle").value="";
-document.getElementById("resourceSubject").value="";
-document.getElementById("resourceDescription").value="";
-document.getElementById("resourceLink").value="";
-
-displayResources();
-
-}
-
-function deleteResource(index){
-
-resources.splice(index,1);
-
-localStorage.setItem(
-"studiResources",
-JSON.stringify(resources)
-);
-
-displayResources();
-
-}
-
-displayResources();
-
-
-/* =========================
+/* =========================================================
 SNAKE
-========================= */
+========================================================= */
 
-const canvas=
+const canvas =
 document.getElementById("snakeCanvas");
 
-const ctx=
-canvas.getContext("2d");
+const ctx =
+canvas ? canvas.getContext("2d") : null;
 
-const grid=20;
+const snakeGrid = 20;
 
-let snake=[];
-let food={x:200,y:200};
+let snake = [];
+let food = null;
 
-let direction={
-x:grid,
-y:0
+let direction = {
+x: snakeGrid,
+y: 0
 };
 
-let nextDirection={
-x:grid,
-y:0
+let nextDirection = {
+x: snakeGrid,
+y: 0
 };
 
-let snakeInterval=null;
-let snakeScore=0;
-let snakeRunning=false;
+let snakeInterval = null;
+let snakeScore = 0;
 
-function startSnake(){
+function startSnake() {
 
-document.getElementById("snakeArea")
-.style.display="flex";
+const area =
+document.getElementById("snakeArea");
 
-snake=[
-{x:200,y:200},
-{x:180,y:200},
-{x:160,y:200}
+if (area) {
+area.style.display = "flex";
+}
+
+if (!canvas || !ctx) return;
+
+snake = [
+{ x: 200, y: 200 },
+{ x: 180, y: 200 },
+{ x: 160, y: 200 }
 ];
 
-direction={
-x:grid,
-y:0
+direction = {
+x: snakeGrid,
+y: 0
 };
 
-nextDirection={
-x:grid,
-y:0
+nextDirection = {
+x: snakeGrid,
+y: 0
 };
 
-snakeScore=0;
-snakeRunning=true;
+snakeScore = 0;
 
-document.getElementById("snakeScore")
-.textContent=snakeScore;
+document.getElementById("snakeScore").textContent =
+snakeScore;
 
 placeFood();
 
 clearInterval(snakeInterval);
 
-snakeInterval=
-setInterval(updateSnake,110);
+snakeInterval =
+setInterval(updateSnake, 100);
 
 drawSnake();
-
-document.getElementById("snakeCanvas")
-.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
 }
 
-function placeFood(){
+function placeFood() {
 
-do{
+if (!canvas) return;
 
-food={
+let valid = false;
+
+while (!valid) {
+
+food = {
 x:
 Math.floor(
-Math.random()*(canvas.width/grid)
-)*grid,
+Math.random() *
+(canvas.width / snakeGrid)
+) * snakeGrid,
 
 y:
 Math.floor(
-Math.random()*(canvas.height/grid)
-)*grid
+Math.random() *
+(canvas.height / snakeGrid)
+) * snakeGrid
 };
 
-}
-while(
-snake.some(
-part=>
-part.x===food.x &&
-part.y===food.y
-)
+valid =
+!snake.some(part =>
+part.x === food.x &&
+part.y === food.y
 );
-
+}
 }
 
-function changeDirection(x,y){
+function updateSnake() {
 
-if(!snakeRunning)return;
+direction = nextDirection;
 
-if(
-x===-direction.x &&
-y===-direction.y
-){
-return;
-}
-
-nextDirection={
-x:x,
-y:y
+const head = {
+x: snake[0].x + direction.x,
+y: snake[0].y + direction.y
 };
 
-}
-
-function updateSnake(){
-
-direction=nextDirection;
-
-const head={
-x:snake[0].x+direction.x,
-y:snake[0].y+direction.y
-};
-
-if(
-head.x<0 ||
-head.x>=canvas.width ||
-head.y<0 ||
-head.y>=canvas.height
-){
+if (
+head.x < 0 ||
+head.x >= canvas.width ||
+head.y < 0 ||
+head.y >= canvas.height
+) {
 
 endSnake();
 return;
-
 }
 
-const ateFood=
-head.x===food.x &&
-head.y===food.y;
+/*
+Check the body.
+*/
 
-const bodyToCheck=
-ateFood ? snake : snake.slice(0,-1);
+for (let i = 0; i < snake.length; i++) {
 
-if(
-bodyToCheck.some(
-part=>
-part.x===head.x &&
-part.y===head.y
-)
-){
+if (
+head.x === snake[i].x &&
+head.y === snake[i].y
+) {
 
 endSnake();
 return;
-
+}
 }
 
 snake.unshift(head);
 
-if(ateFood){
+if (
+food &&
+head.x === food.x &&
+head.y === food.y
+) {
 
 snakeScore++;
 
 document.getElementById("snakeScore")
-.textContent=snakeScore;
+.textContent = snakeScore;
 
 placeFood();
 
-}else{
+} else {
 
 snake.pop();
-
 }
 
 drawSnake();
-
 }
 
-function drawSnake(){
+function drawSnake() {
 
-ctx.fillStyle="#1e2730";
+if (!ctx || !canvas) return;
+
+ctx.fillStyle = "#1e2730";
 
 ctx.fillRect(
 0,
@@ -1811,82 +1561,120 @@ canvas.width,
 canvas.height
 );
 
-ctx.fillStyle="#ff9db8";
+if (food) {
+
+ctx.fillStyle = "#ff9db8";
 
 ctx.fillRect(
 food.x,
 food.y,
-grid-2,
-grid-2
+snakeGrid - 2,
+snakeGrid - 2
 );
+}
 
-snake.forEach((part,index)=>{
+ctx.fillStyle = "#9bd9a5";
 
-ctx.fillStyle=
-index===0
-?"#ffd966"
-:"#9bd9a5";
+snake.forEach((part, index) => {
 
 ctx.fillRect(
 part.x,
 part.y,
-grid-2,
-grid-2
+snakeGrid - 2,
+snakeGrid - 2
 );
-
 });
-
 }
 
-function endSnake(){
+function endSnake() {
 
 clearInterval(snakeInterval);
 
-snakeInterval=null;
-snakeRunning=false;
+snakeInterval = null;
 
-setTimeout(()=>{
+setTimeout(() => {
 
 alert(
-"🐍 Game over! Score: "+
+"🐍 Game over! Score: " +
 snakeScore
 );
 
-},50);
-
+}, 50);
 }
 
-document.addEventListener(
-"keydown",
-event=>{
 
-if(
-!["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"]
+/* =========================================================
+SNAKE CONTROLS
+========================================================= */
+
+document.addEventListener("keydown", function(event) {
+
+/*
+Prevent the page from scrolling when
+the arrow keys are being used for Snake.
+*/
+
+if (
+["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
 .includes(event.key)
-){
-return;
-}
-
+) {
 event.preventDefault();
-
-if(event.key==="ArrowUp"){
-changeDirection(0,-grid);
 }
 
-if(event.key==="ArrowDown"){
-changeDirection(0,grid);
+if (
+event.key === "ArrowUp" &&
+direction.y === 0
+) {
+
+nextDirection = {
+x: 0,
+y: -snakeGrid
+};
 }
 
-if(event.key==="ArrowLeft"){
-changeDirection(-grid,0);
+if (
+event.key === "ArrowDown" &&
+direction.y === 0
+) {
+
+nextDirection = {
+x: 0,
+y: snakeGrid
+};
 }
 
-if(event.key==="ArrowRight"){
-changeDirection(grid,0);
+if (
+event.key === "ArrowLeft" &&
+direction.x === 0
+) {
+
+nextDirection = {
+x: -snakeGrid,
+y: 0
+};
 }
 
+if (
+event.key === "ArrowRight" &&
+direction.x === 0
+) {
+
+nextDirection = {
+x: snakeGrid,
+y: 0
+};
 }
-);
+});
+
+
+/* =========================================================
+INITIALISE
+========================================================= */
+
+updateTimer();
+updatePressNumber();
+displayNotes();
+displayGoals();
 
 </script>
 </body>

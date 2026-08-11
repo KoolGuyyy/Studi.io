@@ -3,988 +3,1185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studi.io — Study Smarter</title>
 
-<meta name="description" content="Studi.io is a simple study space for organising notes, tasks, goals, resources and study sessions.">
+<title>Studi.io — Your Student Hub</title>
 
 <style>
-:root{
---purple:#7357e8;
---purple-light:#eeeaff;
---blue:#4285f4;
---blue-light:#eaf2ff;
---green:#28a56a;
---green-light:#e8f8f0;
---orange:#f2994a;
---orange-light:#fff0e2;
---pink:#e95f91;
---pink-light:#ffeaf2;
---yellow:#e7ad26;
---yellow-light:#fff7d9;
---teal:#20a6a6;
---teal-light:#e6f8f8;
---text:#191a23;
---muted:#747784;
---border:#e5e6ed;
---background:#f7f8fc;
---white:#fff;
-}
 
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
+/* =========================================================
+STUDI.IO
+========================================================= */
 
-body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-background:var(--background);
-color:var(--text);
-line-height:1.5;
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
 }
 
-button,input,textarea,select{
-font-family:inherit;
-}
+:root {
+--cream: #fffaf1;
+--paper: #fffdf8;
+--ink: #28252b;
+--muted: #77727b;
 
-button{
-cursor:pointer;
-}
+--purple: #7867d8;
+--purple-dark: #6252c2;
 
-header{
-position:sticky;
-top:0;
-z-index:100;
-background:rgba(255,255,255,.96);
-backdrop-filter:blur(12px);
-border-bottom:1px solid var(--border);
-}
+--yellow: #ffd966;
+--pink: #ff9db8;
+--blue: #91c8ff;
+--green: #9bd9a5;
+--orange: #ffb878;
 
-.nav-container{
-max-width:1200px;
-margin:auto;
-padding:15px 20px 0;
-}
+--border: #e8dfd2;
+--shadow: 0 8px 0 rgba(45, 38, 32, 0.08);
 
-.logo{
-font-size:28px;
-font-weight:800;
-letter-spacing:-1.5px;
-margin-bottom:13px;
+--radius: 22px;
 }
 
-.logo span{
-color:var(--purple);
-}
+body {
+font-family:
+"Trebuchet MS",
+Arial,
+sans-serif;
 
-.nav{
-display:flex;
-gap:2px;
-overflow-x:auto;
-scrollbar-width:none;
-}
+background:
+radial-gradient(
+circle at 10% 10%,
+rgba(255,217,102,.22),
+transparent 20%
+),
+radial-gradient(
+circle at 90% 20%,
+rgba(255,157,184,.18),
+transparent 22%
+),
+var(--cream);
 
-.nav::-webkit-scrollbar{
-display:none;
+color: var(--ink);
+min-height: 100vh;
 }
 
-.nav button{
-border:0;
-background:transparent;
-color:var(--muted);
-padding:11px 12px;
-font-size:13px;
-font-weight:700;
-white-space:nowrap;
-border-bottom:3px solid transparent;
-}
+/* =========================================================
+HEADER
+========================================================= */
 
-.nav button:hover,
-.nav button.active{
-color:var(--purple);
-border-bottom-color:var(--purple);
-}
+header {
+background: var(--paper);
+border-bottom: 2px solid var(--border);
 
-main{
-max-width:1200px;
-margin:auto;
-padding:38px 20px 80px;
-}
+display: flex;
+align-items: center;
+justify-content: space-between;
 
-.page{
-animation:fade .2s ease;
+padding: 18px 5%;
+
+position: sticky;
+top: 0;
+z-index: 100;
 }
 
-.hidden{
-display:none!important;
+.logo {
+font-size: 29px;
+font-weight: 900;
+letter-spacing: -1.5px;
 }
 
-@keyframes fade{
-from{opacity:0;transform:translateY(5px)}
-to{opacity:1;transform:translateY(0)}
+.logo span {
+color: var(--purple);
 }
 
-/* HERO */
+.logo small {
+font-size: 11px;
+background: var(--yellow);
+padding: 4px 7px;
+border-radius: 8px;
+margin-left: 5px;
+vertical-align: middle;
+}
 
-.hero{
-background:linear-gradient(135deg,#fff 0%,#f0edff 100%);
-border:1px solid var(--border);
-border-radius:25px;
-padding:45px;
-margin-bottom:25px;
+.nav {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
 }
 
-.badge{
-display:inline-block;
-background:var(--purple-light);
-color:var(--purple);
-padding:7px 12px;
-border-radius:20px;
-font-size:12px;
-font-weight:800;
-margin-bottom:15px;
+.nav button {
+border: none;
+background: transparent;
+padding: 9px 13px;
+border-radius: 12px;
+cursor: pointer;
+font-family: inherit;
+font-weight: 700;
+color: var(--ink);
 }
 
-.hero h1{
-font-size:clamp(35px,6vw,55px);
-letter-spacing:-2.5px;
-margin-bottom:10px;
+.nav button:hover {
+background: #f3eadf;
 }
 
-.hero p{
-color:var(--muted);
-font-size:17px;
-line-height:1.6;
-max-width:680px;
+.nav button.active {
+background: var(--purple);
+color: white;
 }
 
-/* AD */
+/* =========================================================
+PAGE
+========================================================= */
 
-.ad-slot{
-min-height:90px;
-border:1px dashed #d6d7df;
-border-radius:15px;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#aaa;
-font-size:11px;
-letter-spacing:.5px;
-margin:22px 0;
-background:#fafafd;
+.page {
+width: min(1180px, 92%);
+margin: auto;
 }
 
-.ad-slot span{
-opacity:.7;
+section {
+display: none;
 }
 
-/* CARDS */
-
-.section-title{
-font-size:21px;
-margin:28px 0 16px;
+section.active {
+display: block;
 }
 
-.cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:17px;
-}
+/* =========================================================
+HERO
+========================================================= */
 
-.card{
-background:white;
-border:1px solid var(--border);
-border-radius:19px;
-padding:24px;
-cursor:pointer;
-transition:.2s;
+.hero {
+padding: 55px 0 35px;
 }
 
-.card:hover{
-transform:translateY(-4px);
-box-shadow:0 12px 30px rgba(30,30,50,.07);
+.hero-inner {
+display: grid;
+grid-template-columns: 1.5fr .8fr;
+gap: 25px;
+align-items: stretch;
 }
 
-.icon{
-width:47px;
-height:47px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:14px;
-font-size:22px;
-margin-bottom:17px;
+.hero-card {
+background: var(--paper);
+border: 2px solid var(--border);
+border-radius: 30px;
+padding: 42px;
+box-shadow: var(--shadow);
 }
 
-.purple{background:var(--purple-light)}
-.blue{background:var(--blue-light)}
-.green{background:var(--green-light)}
-.orange{background:var(--orange-light)}
-.pink{background:var(--pink-light)}
-.yellow{background:var(--yellow-light)}
-.teal{background:var(--teal-light)}
+.hero-card h1 {
+font-size: clamp(42px, 6vw, 72px);
+line-height: .95;
+letter-spacing: -3px;
+margin-bottom: 20px;
+}
 
-.card h3{
-margin-bottom:7px;
+.hero-card h1 span {
+color: var(--purple);
 }
 
-.card p{
-color:var(--muted);
-font-size:14px;
-line-height:1.5;
+.hero-card p {
+color: var(--muted);
+font-size: 18px;
+max-width: 600px;
+line-height: 1.6;
 }
 
-/* CONTENT */
+.hero-sticker {
+background: var(--yellow);
+border-radius: 30px;
+padding: 30px;
+transform: rotate(2deg);
+box-shadow: var(--shadow);
 
-.content-box{
-background:white;
-border:1px solid var(--border);
-border-radius:22px;
-padding:32px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+text-align: center;
 }
 
-.content-box h1{
-font-size:34px;
-margin-bottom:7px;
-letter-spacing:-1px;
+.hero-sticker .emoji {
+font-size: 70px;
 }
 
-.subtitle{
-color:var(--muted);
-margin-bottom:25px;
+.hero-sticker h3 {
+font-size: 25px;
+margin-top: 10px;
 }
 
-/* BUTTONS */
+/* =========================================================
+BUTTONS
+========================================================= */
 
-.button{
-border:0;
-border-radius:11px;
-background:var(--purple);
-color:white;
-padding:12px 18px;
-font-size:14px;
-font-weight:700;
-}
+.big-button {
+margin-top: 25px;
+background: var(--purple);
+color: white;
 
-.button:hover{
-opacity:.86;
-}
+border: none;
+border-radius: 15px;
 
-.secondary{
-background:#f0f1f5;
-color:var(--text);
-}
+padding: 15px 24px;
 
-.danger{
-background:#ffe7e7;
-color:#c33;
-}
+font-family: inherit;
+font-weight: 900;
+font-size: 16px;
 
-.small-button{
-padding:8px 11px;
-font-size:12px;
-}
+cursor: pointer;
 
-/* INPUTS */
+box-shadow: 0 5px 0 var(--purple-dark);
 
-input,
-textarea,
-select{
-width:100%;
-border:1px solid #dedfe6;
-border-radius:11px;
-padding:13px;
-font-size:15px;
-outline:none;
-background:white;
+transition: .15s;
 }
 
-input:focus,
-textarea:focus,
-select:focus{
-border-color:var(--purple);
+.big-button:hover {
+transform: translateY(-2px);
 }
 
-textarea{
-min-height:220px;
-resize:vertical;
+.big-button:active {
+transform: translateY(3px);
+box-shadow: 0 2px 0 var(--purple-dark);
 }
 
-.add-row{
-display:flex;
-gap:10px;
-margin-bottom:20px;
+.small-button {
+border: 2px solid var(--border);
+background: var(--paper);
+padding: 10px 15px;
+border-radius: 12px;
+cursor: pointer;
+font-family: inherit;
+font-weight: 700;
 }
 
-/* SEARCH */
+/* =========================================================
+DASHBOARD GRID
+========================================================= */
 
-.search-box{
-display:flex;
-gap:10px;
-margin-bottom:25px;
+.dashboard-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 18px;
+margin-bottom: 35px;
 }
 
-.search-box input{
-flex:1;
+.tile {
+padding: 25px;
+border-radius: var(--radius);
+border: 2px solid var(--border);
+box-shadow: var(--shadow);
+min-height: 180px;
 }
 
-/* TASKS */
-
-.task{
-display:flex;
-align-items:center;
-gap:12px;
-background:#f8f8fb;
-padding:15px;
-border-radius:13px;
-margin-top:9px;
+.tile:nth-child(1) {
+background: #e7ddff;
 }
 
-.task-check{
-width:auto;
+.tile:nth-child(2) {
+background: #fff0b5;
 }
 
-.task span{
-flex:1;
+.tile:nth-child(3) {
+background: #d9efff;
 }
 
-.task.completed span{
-text-decoration:line-through;
-color:#999;
+.tile:nth-child(4) {
+background: #ffdce7;
 }
 
-.delete{
-border:0;
-background:transparent;
-color:#aaa;
-font-size:19px;
+.tile:nth-child(5) {
+background: #dff3df;
 }
 
-.delete:hover{
-color:#d33;
+.tile:nth-child(6) {
+background: #ffe3c9;
 }
-
-/* GOALS */
 
-.goal{
-border:1px solid var(--border);
-border-radius:15px;
-padding:17px;
-margin-top:12px;
+.tile-icon {
+font-size: 35px;
+margin-bottom: 12px;
 }
 
-.goal-top{
-display:flex;
-justify-content:space-between;
-gap:10px;
-margin-bottom:10px;
+.tile h3 {
+font-size: 21px;
+margin-bottom: 7px;
 }
 
-.progress{
-height:8px;
-background:#eeeef3;
-border-radius:20px;
-overflow:hidden;
-margin-top:9px;
+.tile p {
+color: #625c64;
+line-height: 1.5;
 }
 
-.progress-bar{
-height:100%;
-background:var(--orange);
-transition:.25s;
+.tile button {
+margin-top: 15px;
 }
+
+/* =========================================================
+AD SPACE
+========================================================= */
+
+.ad-space {
+border: 2px dashed #d9d0c4;
+background: rgba(255,255,255,.45);
+
+height: 90px;
 
-/* NOTES */
+border-radius: 18px;
 
-.note{
-border:1px solid var(--border);
-border-radius:15px;
-padding:19px;
-margin-top:12px;
-background:#fff;
+display: flex;
+align-items: center;
+justify-content: center;
+
+color: #aaa19a;
+font-size: 12px;
+
+margin: 25px 0;
 }
 
-.note h3{
-margin-bottom:5px;
+/* =========================================================
+PAGE TITLES
+========================================================= */
+
+.page-title {
+padding: 45px 0 25px;
 }
 
-.note-meta{
-color:var(--muted);
-font-size:12px;
-margin-bottom:10px;
+.page-title h2 {
+font-size: 42px;
+letter-spacing: -1px;
 }
 
-.note-preview{
-color:#555;
-line-height:1.5;
-white-space:pre-wrap;
-max-height:120px;
-overflow:hidden;
+.page-title p {
+color: var(--muted);
+margin-top: 8px;
 }
 
-/* RESOURCES */
+/* =========================================================
+RESOURCE CARDS
+========================================================= */
 
-.resource{
-border:1px solid var(--border);
-border-radius:15px;
-padding:19px;
-margin-top:12px;
-background:#fff;
+.resource-grid {
+display: grid;
+grid-template-columns: repeat(3,1fr);
+gap: 18px;
 }
 
-.resource h3{
-margin-bottom:6px;
+.resource-card {
+background: var(--paper);
+border: 2px solid var(--border);
+border-radius: 20px;
+padding: 23px;
+box-shadow: var(--shadow);
 }
 
-.resource p{
-color:var(--muted);
-font-size:14px;
+.resource-card .subject {
+display: inline-block;
+padding: 6px 10px;
+background: var(--yellow);
+border-radius: 9px;
+font-size: 12px;
+font-weight: 800;
+margin-bottom: 13px;
 }
 
-.resource a{
-color:var(--purple);
-font-weight:700;
-text-decoration:none;
-display:inline-block;
-margin-top:9px;
+.resource-card h3 {
+margin-bottom: 8px;
 }
 
-.subject{
-margin-bottom:30px;
+.resource-card p {
+color: var(--muted);
+line-height: 1.5;
 }
 
-.subject-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-}
+/* =========================================================
+NOTES
+========================================================= */
 
-.subject-header h2{
-font-size:21px;
+.notes-layout {
+display: grid;
+grid-template-columns: 280px 1fr;
+gap: 20px;
 }
 
-/* FAVOURITE */
-
-.favourite{
-border:0;
-background:transparent;
-font-size:20px;
-float:right;
+.notes-list,
+.note-editor {
+background: var(--paper);
+border: 2px solid var(--border);
+border-radius: 22px;
+padding: 20px;
+box-shadow: var(--shadow);
 }
 
-.favourite.active{
-filter:saturate(1.7);
+.notes-list button {
+display: block;
+width: 100%;
+text-align: left;
+border: none;
+background: #f6efe6;
+padding: 13px;
+border-radius: 12px;
+margin-bottom: 8px;
+cursor: pointer;
+font-family: inherit;
 }
 
-/* STUDY GUIDES */
+.note-title,
+.note-text {
+width: 100%;
+border: 2px solid var(--border);
+border-radius: 14px;
+padding: 13px;
+font-family: inherit;
+background: #fffdf8;
+color: var(--ink);
+margin-bottom: 12px;
+}
 
-.guide-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
+.note-title {
+font-size: 20px;
+font-weight: 800;
 }
 
-.guide{
-border:1px solid var(--border);
-border-radius:16px;
-padding:20px;
-background:white;
+.note-text {
+min-height: 300px;
+resize: vertical;
 }
 
-.guide h3{
-margin-bottom:7px;
+/* =========================================================
+GOALS
+========================================================= */
+
+.goal-box {
+background: var(--paper);
+border: 2px solid var(--border);
+border-radius: 22px;
+padding: 25px;
+box-shadow: var(--shadow);
 }
 
-.guide p{
-font-size:14px;
-color:var(--muted);
+.goal-form {
+display: flex;
+gap: 10px;
+margin-bottom: 25px;
 }
 
-.guide-content{
-background:#f8f8fb;
-border-radius:14px;
-padding:18px;
-margin-top:12px;
-font-size:14px;
-line-height:1.7;
+.goal-form input {
+flex: 1;
+border: 2px solid var(--border);
+border-radius: 13px;
+padding: 13px;
+font-family: inherit;
 }
 
-/* TIMER */
+.goal {
+display: flex;
+align-items: center;
+gap: 12px;
 
-.timer{
-text-align:center;
-}
+background: #f7efe5;
+padding: 14px;
+border-radius: 14px;
 
-.timer-number{
-font-size:clamp(65px,13vw,115px);
-font-weight:800;
-letter-spacing:-6px;
-margin:30px 0;
+margin-bottom: 10px;
 }
 
-.timer-buttons{
-display:flex;
-justify-content:center;
-gap:8px;
-flex-wrap:wrap;
+.goal.completed {
+opacity: .55;
+text-decoration: line-through;
 }
 
-/* WHEEL */
+/* =========================================================
+SPIN WHEEL
+========================================================= */
 
-.wheel{
-text-align:center;
+.wheel-area {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 25px;
 }
+
+.wheel {
+width: 310px;
+height: 310px;
+border-radius: 50%;
 
-.wheel-circle{
-width:220px;
-height:220px;
-margin:30px auto;
-border-radius:50%;
-background:conic-gradient(
-#7357e8 0deg 45deg,
-#4285f4 45deg 90deg,
-#28a56a 90deg 135deg,
-#f2994a 135deg 180deg,
-#e95f91 180deg 225deg,
-#e7ad26 225deg 270deg,
-#20a6a6 270deg 315deg,
-#7357e8 315deg 360deg
+background:
+conic-gradient(
+#ff9db8 0deg 60deg,
+#ffd966 60deg 120deg,
+#91c8ff 120deg 180deg,
+#9bd9a5 180deg 240deg,
+#ffb878 240deg 300deg,
+#bcaeff 300deg 360deg
 );
-border:9px solid white;
-box-shadow:0 8px 30px rgba(0,0,0,.12);
-transition:transform 2s cubic-bezier(.15,.75,.2,1);
+
+border: 10px solid white;
+box-shadow: 0 8px 0 rgba(0,0,0,.12);
+
+position: relative;
+
+transition: transform 3s cubic-bezier(.17,.67,.12,.99);
 }
 
-.wheel-result{
-font-size:25px;
-font-weight:800;
-margin:20px;
+.wheel::after {
+content: "SPIN";
+position: absolute;
+
+width: 75px;
+height: 75px;
+
+border-radius: 50%;
+
+background: white;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+font-weight: 900;
+
+top: 50%;
+left: 50%;
+
+transform: translate(-50%,-50%);
 }
 
-.option{
-display:flex;
-align-items:center;
-gap:10px;
-margin-top:8px;
+.pointer {
+font-size: 35px;
+transform: rotate(180deg);
 }
 
-.option span{
-flex:1;
+.wheel-result {
+font-size: 23px;
+font-weight: 900;
 }
 
-/* FACT */
+/* =========================================================
+BUTTON PRESSER
+========================================================= */
 
-.fact{
-background:var(--yellow-light);
-border-radius:16px;
-padding:30px;
-font-size:20px;
-line-height:1.5;
-margin-bottom:20px;
+.presser {
+text-align: center;
 }
 
-/* GAME */
-
-.game-box{
-text-align:center;
-background:#f8f8fb;
-border-radius:17px;
-padding:25px;
+.press-number {
+font-size: 100px;
+font-weight: 900;
+color: var(--purple);
 }
 
-.score{
-font-size:20px;
-font-weight:800;
-margin:15px;
+.press-button {
+width: 230px;
+height: 230px;
+
+border-radius: 50%;
+border: 10px solid #6252c2;
+
+background: var(--purple);
+
+color: white;
+
+font-size: 28px;
+font-weight: 900;
+
+cursor: pointer;
+
+box-shadow:
+0 15px 0 #5142a8,
+0 25px 30px rgba(0,0,0,.15);
+
+transition: .08s;
 }
 
-.click-button{
-width:150px;
-height:150px;
-border:0;
-border-radius:50%;
-background:var(--pink);
-color:white;
-font-size:18px;
-font-weight:800;
+.press-button:active {
+transform: translateY(12px);
+box-shadow: 0 3px 0 #5142a8;
 }
 
-.click-button:active{
-transform:scale(.95);
+/* =========================================================
+GAMES
+========================================================= */
+
+.game-grid {
+display: grid;
+grid-template-columns: repeat(3,1fr);
+gap: 18px;
 }
 
-/* FAQ */
-
-.faq{
-border-bottom:1px solid var(--border);
-padding:17px 0;
+.game-card {
+background: var(--paper);
+border: 2px solid var(--border);
+border-radius: 22px;
+padding: 25px;
+box-shadow: var(--shadow);
+text-align: center;
 }
 
-.faq button{
-width:100%;
-text-align:left;
-border:0;
-background:none;
-font-weight:700;
-font-size:15px;
-padding:0;
+.game-card .game-icon {
+font-size: 50px;
+margin-bottom: 12px;
 }
 
-.faq-answer{
-display:none;
-color:var(--muted);
-font-size:14px;
-padding-top:10px;
-line-height:1.6;
+/* =========================================================
+SNAKE
+========================================================= */
+
+.snake-area {
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 
-.faq.open .faq-answer{
-display:block;
+#snakeCanvas {
+background: #1e2730;
+border: 8px solid white;
+border-radius: 15px;
+max-width: 100%;
 }
 
-/* FOOTER */
-
-footer{
-max-width:1200px;
-margin:auto;
-padding:30px 20px 50px;
-color:var(--muted);
-font-size:13px;
-text-align:center;
+.snake-score {
+font-size: 22px;
+font-weight: 900;
+margin: 15px;
 }
 
-.footer-links{
-display:flex;
-justify-content:center;
-gap:18px;
-flex-wrap:wrap;
-margin-bottom:12px;
+/* =========================================================
+TIMER
+========================================================= */
+
+.timer-card {
+background: #e7ddff;
+border: 2px solid var(--border);
+border-radius: 25px;
+padding: 35px;
+text-align: center;
+box-shadow: var(--shadow);
 }
 
-.footer-links button{
-border:0;
-background:none;
-color:var(--muted);
-font-size:13px;
+.timer {
+font-size: 75px;
+font-weight: 900;
+margin: 15px;
 }
 
-/* MOBILE */
-
-@media(max-width:800px){
-
-.cards{
-grid-template-columns:repeat(2,1fr);
+.timer-controls {
+display: flex;
+justify-content: center;
+gap: 10px;
+flex-wrap: wrap;
 }
 
-.guide-grid{
-grid-template-columns:1fr 1fr;
+/* =========================================================
+FOOTER
+========================================================= */
+
+footer {
+margin-top: 70px;
+padding: 35px;
+text-align: center;
+color: var(--muted);
+border-top: 2px solid var(--border);
 }
 
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media(max-width:850px) {
+
+.hero-inner {
+grid-template-columns: 1fr;
 }
 
-@media(max-width:550px){
-
-main{
-padding:25px 14px 60px;
+.dashboard-grid,
+.resource-grid,
+.game-grid {
+grid-template-columns: 1fr 1fr;
 }
 
-.hero{
-padding:28px 22px;
+.notes-layout {
+grid-template-columns: 1fr;
+}
 }
 
-.content-box{
-padding:23px 17px;
+@media(max-width:600px) {
+
+header {
+flex-direction: column;
+gap: 12px;
 }
 
-.cards,
-.guide-grid{
-grid-template-columns:1fr;
+.nav {
+justify-content: center;
 }
 
-.add-row,
-.search-box{
-flex-direction:column;
+.hero-card {
+padding: 28px;
 }
 
-.subject-header{
-align-items:flex-start;
-flex-direction:column;
+.dashboard-grid,
+.resource-grid,
+.game-grid {
+grid-template-columns: 1fr;
 }
 
-.hero h1{
-letter-spacing:-1.5px;
+.hero-card h1 {
+font-size: 48px;
 }
 
+.wheel {
+width: 260px;
+height: 260px;
 }
+
+.press-button {
+width: 190px;
+height: 190px;
+}
+}
+
 </style>
 </head>
 
+
 <body>
+
+<!-- =====================================================
+HEADER
+===================================================== -->
 
 <header>
 
-<div class="nav-container">
-
 <div class="logo">
 studi<span>.io</span>
+<small>STUDENT HUB</small>
 </div>
 
-<nav class="nav">
+<nav>
 
-<button class="active" onclick="showPage('home',this)">Home</button>
-<button onclick="showPage('resources',this)">Resources</button>
-<button onclick="showPage('notes',this)">Notes</button>
-<button onclick="showPage('tasks',this)">Tasks</button>
-<button onclick="showPage('goals',this)">Goals</button>
-<button onclick="showPage('wheel',this)">Study Wheel</button>
-<button onclick="showPage('guides',this)">Study Guides</button>
-<button onclick="showPage('games',this)">Mini Games</button>
-<button onclick="showPage('timer',this)">Study Timer</button>
-<button onclick="showPage('facts',this)">Fun Facts</button>
+<button class="active" onclick="showPage('home',this)">
+🏠 Home
+</button>
+
+<button onclick="showPage('resources',this)">
+📚 Resources
+</button>
+
+<button onclick="showPage('notes',this)">
+📝 Notes
+</button>
+
+<button onclick="showPage('goals',this)">
+🎯 Goals
+</button>
+
+<button onclick="showPage('games',this)">
+🎮 Games
+</button>
 
 </nav>
-
-</div>
 
 </header>
 
 
-<main>
+<div class="page">
 
 
-<!-- HOME -->
+<!-- =====================================================
+HOME
+===================================================== -->
 
-<section id="home" class="page">
+<section id="home" class="active">
 
 <div class="hero">
 
-<div class="badge">YOUR STUDY SPACE</div>
+<div class="hero-inner">
 
-<h1>Study smarter.</h1>
+<div class="hero-card">
+
+<h1>
+School stuff,<br>
+<span>made easier.</span>
+</h1>
 
 <p>
-Everything you need to organise your studying,
-stay focused and make progress — all in one place.
+Your little corner of the internet for studying,
+organising your life, taking breaks and actually
+getting things done.
 </p>
 
-</div>
+<button class="big-button"
+onclick="showPage('resources')">
 
-<div class="ad-slot">
-<span>ADVERTISEMENT</span>
-</div>
+📚 Explore resources
 
-<h2 class="section-title">
-What do you want to do?
-</h2>
-
-<div class="cards">
-
-<div class="card" onclick="showPage('resources')">
-<div class="icon blue">📚</div>
-<h3>Resources</h3>
-<p>Save useful study resources under your subjects.</p>
-</div>
-
-<div class="card" onclick="showPage('notes')">
-<div class="icon teal">📝</div>
-<h3>Notes</h3>
-<p>Create and keep your own study notes.</p>
-</div>
-
-<div class="card" onclick="showPage('tasks')">
-<div class="icon green">✅</div>
-<h3>Tasks</h3>
-<p>Keep track of everything you need to do.</p>
-</div>
-
-<div class="card" onclick="showPage('goals')">
-<div class="icon orange">🎯</div>
-<h3>Goals</h3>
-<p>Set bigger goals and track your progress.</p>
-</div>
-
-<div class="card" onclick="showPage('wheel')">
-<div class="icon purple">🎡</div>
-<h3>Study Wheel</h3>
-<p>Add your own subjects and let the wheel choose.</p>
-</div>
-
-<div class="card" onclick="showPage('guides')">
-<div class="icon blue">📖</div>
-<h3>Study Guides</h3>
-<p>Quick explanations for useful study topics.</p>
-</div>
-
-<div class="card" onclick="showPage('games')">
-<div class="icon pink">🎮</div>
-<h3>Mini Games</h3>
-<p>Take a quick break between study sessions.</p>
-</div>
-
-<div class="card" onclick="showPage('timer')">
-<div class="icon teal">⏱️</div>
-<h3>Study Timer</h3>
-<p>Focus for a set amount of time.</p>
-</div>
-
-<div class="card" onclick="showPage('facts')">
-<div class="icon yellow">🧠</div>
-<h3>Fun Facts</h3>
-<p>Learn something interesting in seconds.</p>
-</div>
-
-</div>
-
-<div class="ad-slot">
-<span>ADVERTISEMENT</span>
-</div>
-
-</section>
-
-
-<!-- RESOURCES -->
-
-<section id="resources" class="page hidden">
-
-<div class="content-box">
-
-<h1>📚 Resources</h1>
-
-<p class="subtitle">
-Build your own study library.
-</p>
-
-<div class="search-box">
-
-<input
-id="resourceSearch"
-placeholder="Search your resources..."
-oninput="renderResources()">
-
-</div>
-
-<div class="add-row">
-
-<input
-id="subjectInput"
-placeholder="New subject, e.g. Mathematics">
-
-<button class="button" onclick="addSubject()">
-+ Subject
 </button>
 
 </div>
 
-<div id="resourceSubjects"></div>
+
+<div class="hero-sticker">
+
+<div class="emoji">
+📖
+</div>
+
+<h3>
+You've got this.
+</h3>
+
+<p>
+One thing at a time.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+<div class="tile">
+
+<div class="tile-icon">📚</div>
+
+<h3>Study Resources</h3>
+
+<p>
+Find useful study material and
+revision resources.
+</p>
+
+<button class="small-button"
+onclick="showPage('resources')">
+
+Browse
+
+</button>
+
+</div>
+
+
+<div class="tile">
+
+<div class="tile-icon">🎡</div>
+
+<h3>Spin the Wheel</h3>
+
+<p>
+Can't decide what to study?
+Let the wheel decide.
+</p>
+
+<button class="small-button"
+onclick="showPage('wheel')">
+
+Spin
+
+</button>
+
+</div>
+
+
+<div class="tile">
+
+<div class="tile-icon">👆</div>
+
+<h3>Button Presser</h3>
+
+<p>
+Completely pointless.
+Completely satisfying.
+</p>
+
+<button class="small-button"
+onclick="showPage('presser')">
+
+Press
+
+</button>
+
+</div>
+
+
+<div class="tile">
+
+<div class="tile-icon">📝</div>
+
+<h3>Study Notes</h3>
+
+<p>
+Write and save your notes
+directly in Studi.io.
+</p>
+
+<button class="small-button"
+onclick="showPage('notes')">
+
+Open notes
+
+</button>
+
+</div>
+
+
+<div class="tile">
+
+<div class="tile-icon">🎯</div>
+
+<h3>My Goals</h3>
+
+<p>
+Keep track of the things
+you want to accomplish.
+</p>
+
+<button class="small-button"
+onclick="showPage('goals')">
+
+Goals
+
+</button>
+
+</div>
+
+
+<div class="tile">
+
+<div class="tile-icon">🎮</div>
+
+<h3>Break Time</h3>
+
+<p>
+Finished studying?
+Play something tiny.
+</p>
+
+<button class="small-button"
+onclick="showPage('games')">
+
+Play
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="ad-space">
+ADVERTISEMENT
+</div>
+
+
+<div class="timer-card">
+
+<h2>⏱️ Quick Study Timer</h2>
+
+<div class="timer" id="timer">
+25:00
+</div>
+
+<div class="timer-controls">
+
+<button class="small-button"
+onclick="startTimer()">
+
+▶ Start
+
+</button>
+
+<button class="small-button"
+onclick="pauseTimer()">
+
+⏸ Pause
+
+</button>
+
+<button class="small-button"
+onclick="resetTimer()">
+
+↻ Reset
+
+</button>
+
+</div>
 
 </div>
 
 </section>
 
 
-<!-- NOTES -->
+<!-- =====================================================
+RESOURCES
+===================================================== -->
 
-<section id="notes" class="page hidden">
+<section id="resources">
 
-<div class="content-box">
+<div class="page-title">
 
-<h1>📝 Notes</h1>
+<h2>📚 Study Resources</h2>
 
-<p class="subtitle">
-Create and organise your own notes.
+<p>
+A little library for when you don't know where to start.
 </p>
-
-<div class="search-box">
-
-<input
-id="noteSearch"
-placeholder="Search notes..."
-oninput="renderNotes()">
 
 </div>
 
-<div class="add-row">
+
+<div class="resource-grid">
+
+<div class="resource-card">
+<span class="subject">MATHS</span>
+<h3>Percentage Practice</h3>
+<p>
+Practise percentages, discounts,
+GST and more.
+</p>
+</div>
+
+<div class="resource-card">
+<span class="subject">SCIENCE</span>
+<h3>Science Revision</h3>
+<p>
+Revision topics, terminology
+and quick study notes.
+</p>
+</div>
+
+<div class="resource-card">
+<span class="subject">ENGLISH</span>
+<h3>Essay Help</h3>
+<p>
+Planning, paragraphs, evidence
+and writing techniques.
+</p>
+</div>
+
+<div class="resource-card">
+<span class="subject">STUDY</span>
+<h3>Study Techniques</h3>
+<p>
+Flashcards, active recall,
+spaced repetition and more.
+</p>
+</div>
+
+<div class="resource-card">
+<span class="subject">EXAMS</span>
+<h3>Exam Planner</h3>
+<p>
+Break your revision into
+manageable pieces.
+</p>
+</div>
+
+<div class="resource-card">
+<span class="subject">GENERAL</span>
+<h3>Useful Websites</h3>
+<p>
+A collection of useful websites
+for students.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+NOTES
+===================================================== -->
+
+<section id="notes">
+
+<div class="page-title">
+
+<h2>📝 Study Notes</h2>
+
+<p>
+Your notes stay saved on this device.
+</p>
+
+</div>
+
+
+<div class="notes-layout">
+
+<div class="notes-list">
+
+<button onclick="newNote()">
+➕ New note
+</button>
+
+<div id="noteList"></div>
+
+</div>
+
+
+<div class="note-editor">
 
 <input
 id="noteTitle"
-placeholder="Note title">
-
-<input
-id="noteSubject"
-placeholder="Subject">
-
-</div>
+class="note-title"
+placeholder="Note title..."
+>
 
 <textarea
-id="noteContent"
-placeholder="Write your note here..."></textarea>
+id="noteText"
+class="note-text"
+placeholder="Start writing..."
+></textarea>
 
-<br><br>
+<button
+class="big-button"
+onclick="saveNote()">
 
-<button class="button" onclick="saveNote()">
-Save Note
+💾 Save Note
+
 </button>
 
-<div id="notesList"></div>
+</div>
 
 </div>
 
 </section>
 
 
-<!-- TASKS -->
+<!-- =====================================================
+GOALS
+===================================================== -->
 
-<section id="tasks" class="page hidden">
+<section id="goals">
 
-<div class="content-box">
+<div class="page-title">
 
-<h1>✅ Tasks</h1>
+<h2>🎯 My Goals</h2>
 
-<p class="subtitle">
-Get the little things done.
+<p>
+Small goals. Big progress.
 </p>
-
-<div class="add-row">
-
-<input
-id="taskInput"
-placeholder="e.g. Finish maths worksheet"
-onkeydown="if(event.key==='Enter')addTask()">
-
-<button class="button" onclick="addTask()">
-+ Add Task
-</button>
 
 </div>
 
-<div id="taskList"></div>
 
-</div>
+<div class="goal-box">
 
-</section>
-
-
-<!-- GOALS -->
-
-<section id="goals" class="page hidden">
-
-<div class="content-box">
-
-<h1>🎯 Goals</h1>
-
-<p class="subtitle">
-Your bigger things you're working towards.
-</p>
-
-<div class="add-row">
+<div class="goal-form">
 
 <input
 id="goalInput"
-placeholder="e.g. Improve my algebra">
+placeholder="e.g. Finish my science notes"
+>
 
-<button class="button" onclick="addGoal()">
-+ Add Goal
+<button
+class="big-button"
+onclick="addGoal()">
+
+Add
+
 </button>
 
 </div>
@@ -996,247 +1193,48 @@ placeholder="e.g. Improve my algebra">
 </section>
 
 
-<!-- WHEEL -->
+<!-- =====================================================
+WHEEL
+===================================================== -->
 
-<section id="wheel" class="page hidden">
+<section id="wheel">
 
-<div class="content-box wheel">
+<div class="page-title">
 
-<h1>🎡 Study Wheel</h1>
+<h2>🎡 Spin the Wheel</h2>
 
-<p class="subtitle">
-Add your own options and let Studi.io choose.
+<p>
+Let fate decide what you're doing next.
 </p>
-
-<div class="add-row">
-
-<input
-id="wheelInput"
-placeholder="e.g. Biology">
-
-<button class="button" onclick="addWheelOption()">
-+ Add
-</button>
 
 </div>
 
-<div id="wheelOptions"></div>
+
+<div class="wheel-area">
+
+<div class="pointer">
+🔻
+</div>
 
 <div
-id="wheelCircle"
-class="wheel-circle">
+class="wheel"
+id="wheel">
+
 </div>
-
-<div id="wheelResult" class="wheel-result">
-Spin the wheel!
-</div>
-
-<button class="button" onclick="spinWheel()">
-SPIN THE WHEEL
-</button>
-
-<br><br>
 
 <button
-class="button secondary"
-onclick="resetWheel()">
-Reset Options
+class="big-button"
+onclick="spinWheel()">
+
+🎡 SPIN
+
 </button>
 
-</div>
-
-</section>
-
-
-<!-- STUDY GUIDES -->
-
-<section id="guides" class="page hidden">
-
-<div class="content-box">
-
-<h1>📖 Study Guides</h1>
-
-<p class="subtitle">
-Quick explanations to help you revise.
-</p>
-
-<div class="guide-grid">
-
-<div class="guide">
-
-<h3>📊 Percentages</h3>
-
-<p>
-Understand percentages, increases and decreases.
-</p>
-
-<div class="guide-content">
-
-<strong>Percentage of a number</strong><br>
-
-Convert the percentage to a decimal,
-then multiply.
-
-<br><br>
-
-Example:<br>
-
-20% of 80 = 0.20 × 80 = <strong>16</strong>
-
-<br><br>
-
-For percentage increase:
-find the increase, then add it to the original amount.
-
-</div>
-
-</div>
-
-
-<div class="guide">
-
-<h3>📐 Pythagoras</h3>
-
-<p>
-Find a missing side of a right-angled triangle.
-</p>
-
-<div class="guide-content">
-
-The formula is:
-
-<br><br>
-
-<strong>a² + b² = c²</strong>
-
-<br><br>
-
-The longest side is always <strong>c</strong>.
-
-Example:
-
-3² + 4² = 5²
-
-9 + 16 = 25
-
-</div>
-
-</div>
-
-
-<div class="guide">
-
-<h3>🧬 Cells</h3>
-
-<p>
-A quick introduction to cell structures.
-</p>
-
-<div class="guide-content">
-
-The <strong>nucleus</strong> contains genetic information.
-
-The <strong>cell membrane</strong> controls what enters
-and leaves the cell.
-
-Plant cells also have a
-<strong>cell wall</strong>, <strong>chloroplasts</strong>
-and a large <strong>vacuole</strong>.
-
-</div>
-
-</div>
-
-
-<div class="guide">
-
-<h3>⚗️ Atoms</h3>
-
-<p>
-The basic structure of matter.
-</p>
-
-<div class="guide-content">
-
-Atoms contain:
-
-<br><br>
-
-<strong>Protons</strong> — positive
-
-<br>
-
-<strong>Neutrons</strong> — no charge
-
-<br>
-
-<strong>Electrons</strong> — negative
-
-<br><br>
-
-Protons and neutrons are found in the nucleus.
-
-</div>
-
-</div>
-
-
-<div class="guide">
-
-<h3>📚 Essay Structure</h3>
-
-<p>
-A simple structure for organising an essay.
-</p>
-
-<div class="guide-content">
-
-A useful structure is:
-
-<br><br>
-
-<strong>Introduction</strong><br>
-Introduce your main idea.
-
-<br><br>
-
-<strong>Body paragraphs</strong><br>
-Explain your points and support them with evidence.
-
-<br><br>
-
-<strong>Conclusion</strong><br>
-Bring your main ideas together.
-
-</div>
-
-</div>
-
-
-<div class="guide">
-
-<h3>🧠 Active Recall</h3>
-
-<p>
-A powerful way to test your memory.
-</p>
-
-<div class="guide-content">
-
-Instead of repeatedly reading your notes,
-close them and try to remember the information.
-
-<br><br>
-
-For example:
-
-"Without looking, can I explain photosynthesis?"
-
-Then check your answer and identify what you missed.
-
-</div>
-
-</div>
+<div
+class="wheel-result"
+id="wheelResult">
+
+What will you get?
 
 </div>
 
@@ -1245,107 +1243,48 @@ Then check your answer and identify what you missed.
 </section>
 
 
-<!-- GAMES -->
+<!-- =====================================================
+BUTTON PRESSER
+===================================================== -->
 
-<section id="games" class="page hidden">
+<section id="presser">
 
-<div class="content-box">
+<div class="page-title">
 
-<h1>🎮 Mini Games</h1>
+<h2>👆 Button Presser</h2>
 
-<p class="subtitle">
-Take a quick break.
+<p>
+There is absolutely no reason to do this.
+That's the point.
 </p>
 
-<div class="game-box">
+</div>
 
-<h2>🔘 Button Presser</h2>
 
-<p style="color:#747784;margin-top:7px;">
-How many times can you press it?
-</p>
+<div class="presser">
 
-<div class="score">
-Score:
-<span id="clickScore">0</span>
+<div class="press-number"
+id="pressNumber">
+
+0
+
 </div>
 
 <button
-class="click-button"
+class="press-button"
 onclick="pressButton()">
-PRESS!
+
+PRESS
 </button>
 
 <br><br>
 
 <button
-class="button secondary"
-onclick="resetGame()">
+class="small-button"
+onclick="resetPresses()">
+
 Reset
-</button>
 
-</div>
-
-</div>
-
-</section>
-
-
-<!-- TIMER -->
-
-<section id="timer" class="page hidden">
-
-<div class="content-box timer">
-
-<h1>⏱️ Study Timer</h1>
-
-<p class="subtitle">
-Focus for 25 minutes.
-</p>
-
-<div id="time" class="timer-number">
-25:00
-</div>
-
-<div class="timer-buttons">
-
-<button class="button" onclick="startTimer()">
-Start
-</button>
-
-<button class="button secondary" onclick="pauseTimer()">
-Pause
-</button>
-
-<button class="button secondary" onclick="resetTimer()">
-Reset
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- FACTS -->
-
-<section id="facts" class="page hidden">
-
-<div class="content-box">
-
-<h1>🧠 Fun Facts</h1>
-
-<p class="subtitle">
-Learn something new.
-</p>
-
-<div id="fact" class="fact">
-Click the button for a random fact.
-</div>
-
-<button class="button" onclick="newFact()">
-Give me a fact
 </button>
 
 </div>
@@ -1353,1448 +1292,707 @@ Give me a fact
 </section>
 
 
-<!-- ABOUT -->
+<!-- =====================================================
+GAMES
+===================================================== -->
 
-<section id="about" class="page hidden">
+<section id="games">
 
-<div class="content-box">
+<div class="page-title">
 
-<h1>ℹ️ About Studi.io</h1>
-
-<p class="subtitle">
-A simple place to study, organise and stay focused.
-</p>
-
-<h2>Why Studi.io?</h2>
-
-<br>
+<h2>🎮 Break Time</h2>
 
 <p>
-Studi.io was created to bring the everyday tools students
-need into one simple study space.
+Five minutes won't destroy your study session. Probably.
 </p>
 
-<br>
+</div>
+
+
+<div class="game-grid">
+
+<div class="game-card">
+
+<div class="game-icon">🐍</div>
+
+<h3>Snake</h3>
 
 <p>
-Instead of jumping between different websites and apps,
-you can keep your notes, tasks, goals, resources and study
-sessions together.
+The classic.
 </p>
-
-<br>
-
-<h2>Our goal</h2>
-
-<br>
-
-<p>
-To make studying feel more organised, accessible and
-a little more enjoyable.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- HELP -->
-
-<section id="help" class="page hidden">
-
-<div class="content-box">
-
-<h1>❓ Help & FAQ</h1>
-
-<p class="subtitle">
-Quick answers to common questions.
-</p>
-
-<div class="faq">
-
-<button onclick="toggleFAQ(this)">
-Where is my data stored?
-</button>
-
-<div class="faq-answer">
-Your personal notes, tasks, goals and resources are currently
-stored locally in your browser on your device.
-</div>
-
-</div>
-
-
-<div class="faq">
-
-<button onclick="toggleFAQ(this)">
-Do I need an account?
-</button>
-
-<div class="faq-answer">
-Not currently. Studi.io is designed to work without requiring
-an account.
-</div>
-
-</div>
-
-
-<div class="faq">
-
-<button onclick="toggleFAQ(this)">
-Will my data appear on another device?
-</button>
-
-<div class="faq-answer">
-Currently, locally stored information stays on the device and
-browser where it was created.
-</div>
-
-</div>
-
-
-<div class="faq">
-
-<button onclick="toggleFAQ(this)">
-How do I add a resource?
-</button>
-
-<div class="faq-answer">
-Open Resources, choose a subject and press "+ Resource".
-You can then add the resource name and its link.
-</div>
-
-</div>
-
-
-<div class="faq">
-
-<button onclick="toggleFAQ(this)">
-Can I customise the Study Wheel?
-</button>
-
-<div class="faq-answer">
-Yes. Add your own options and remove options you don't want.
-Your custom options are saved on your device.
-</div>
-
-</div>
-
-
-<div class="faq">
-
-<button onclick="toggleFAQ(this)">
-Why isn't my information showing?
-</button>
-
-<div class="faq-answer">
-Your information is saved using browser storage. If browser
-data is cleared, locally stored Studi.io information may also
-be removed.
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PRIVACY -->
-
-<section id="privacy" class="page hidden">
-
-<div class="content-box">
-
-<h1>🔒 Privacy</h1>
-
-<p class="subtitle">
-Studi.io privacy information.
-</p>
-
-<h2>Information stored on your device</h2>
-
-<br>
-
-<p>
-Studi.io currently stores information such as notes, tasks,
-goals, resources and Study Wheel settings in your browser's
-local storage.
-</p>
-
-<br>
-
-<p>
-This information is intended to remain on the device and
-browser where it was created.
-</p>
-
-<br>
-
-<h2>Advertising</h2>
-
-<br>
-
-<p>
-If advertising is introduced, additional information may be
-processed by the advertising provider according to its own
-privacy policies and applicable requirements.
-</p>
-
-<br>
-
-<h2>Changes</h2>
-
-<br>
-
-<p>
-This privacy information may be updated as Studi.io develops
-new features and services.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- TERMS -->
-
-<section id="terms" class="page hidden">
-
-<div class="content-box">
-
-<h1>📄 Terms</h1>
-
-<p class="subtitle">
-General Studi.io terms.
-</p>
-
-<h2>Using Studi.io</h2>
-
-<br>
-
-<p>
-Studi.io is provided as a study organisation and educational
-tool. Information provided through Studi.io is intended for
-general educational purposes.
-</p>
-
-<br>
-
-<h2>Your information</h2>
-
-<br>
-
-<p>
-You are responsible for information and content you add to
-your own Studi.io workspace.
-</p>
-
-<br>
-
-<h2>Availability</h2>
-
-<br>
-
-<p>
-We aim to keep Studi.io useful and available, but features may
-change, be updated or temporarily become unavailable.
-</p>
-
-<br>
-
-<h2>Updates</h2>
-
-<br>
-
-<p>
-These terms may be updated as Studi.io develops.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section id="contact" class="page hidden">
-
-<div class="content-box">
-
-<h1>📬 Contact</h1>
-
-<p class="subtitle">
-Have a question or found a problem?
-</p>
-
-<p style="color:var(--muted);margin-bottom:20px;">
-Use the form below to prepare a support message.
-</p>
-
-<input
-id="contactName"
-placeholder="Your name">
-
-<br><br>
-
-<input
-id="contactEmail"
-type="email"
-placeholder="Your email">
-
-<br><br>
-
-<textarea
-id="contactMessage"
-placeholder="How can we help?"></textarea>
-
-<br><br>
 
 <button
-class="button"
-onclick="prepareContact()">
-Prepare Message
+class="big-button"
+onclick="startSnake()">
+
+Play Snake
+
 </button>
 
-<p
-id="contactStatus"
-style="margin-top:15px;color:var(--muted);">
+</div>
+
+
+<div class="game-card">
+
+<div class="game-icon">🎯</div>
+
+<h3>Coming Soon</h3>
+
+<p>
+More tiny games are coming.
+</p>
+
+</div>
+
+
+<div class="game-card">
+
+<div class="game-icon">🧠</div>
+
+<h3>Coming Soon</h3>
+
+<p>
+Something mildly addictive.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="snake-area" id="snakeArea"
+style="display:none; margin-top:40px;">
+
+<div class="snake-score">
+Score: <span id="snakeScore">0</span>
+</div>
+
+<canvas
+id="snakeCanvas"
+width="400"
+height="400">
+</canvas>
+
+<br>
+
+<button
+class="small-button"
+onclick="startSnake()">
+
+Restart Snake
+
+</button>
+
+<p style="margin-top:15px;color:var(--muted);">
+Use the arrow keys.
 </p>
 
 </div>
 
 </section>
-
-</main>
 
 
 <footer>
 
-<div class="footer-links">
-
-<button onclick="showPage('about')">
-About
-</button>
-
-<button onclick="showPage('help')">
-Help & FAQ
-</button>
-
-<button onclick="showPage('privacy')">
-Privacy
-</button>
-
-<button onclick="showPage('terms')">
-Terms
-</button>
-
-<button onclick="showPage('contact')">
-Contact
-</button>
-
-</div>
-
-<p>
-© <span id="year"></span> Studi.io
-</p>
+studi.io © 2026
+<br><br>
+A little place to study, organise and procrastinate responsibly. 🌱
 
 </footer>
+
+</div>
 
 
 <script>
 
-/* =========================
-   SAFE TEXT
-========================= */
+/* =========================================================
+PAGE NAVIGATION
+========================================================= */
 
-function escapeHTML(text){
+function showPage(page, button) {
 
-const div=document.createElement("div");
+document.querySelectorAll("section")
+.forEach(section =>
+section.classList.remove("active")
+);
 
-div.textContent=text;
+const target = document.getElementById(page);
 
-return div.innerHTML;
-
+if (target) {
+target.classList.add("active");
 }
 
+document.querySelectorAll(".nav button")
+.forEach(btn =>
+btn.classList.remove("active")
+);
 
-/* =========================
-   NAVIGATION
-========================= */
-
-function showPage(page,button){
-
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.add("hidden");
-});
-
-const target=document.getElementById(page);
-
-if(!target)return;
-
-target.classList.remove("hidden");
-
-document.querySelectorAll(".nav button").forEach(b=>{
-b.classList.remove("active");
-});
-
-if(button){
+if (button) {
 button.classList.add("active");
 }
 
 window.scrollTo({
-top:0,
-behavior:"smooth"
+top: 0,
+behavior: "smooth"
 });
-
 }
 
 
-/* =========================
-   NOTES
-========================= */
+/* =========================================================
+STUDY TIMER
+========================================================= */
 
-let notes=
-JSON.parse(localStorage.getItem("studiNotesV3"))||[];
+let timerSeconds = 25 * 60;
+let timerInterval = null;
 
-function saveNotes(){
+function updateTimer() {
 
-localStorage.setItem(
-"studiNotesV3",
-JSON.stringify(notes)
-);
+const minutes =
+Math.floor(timerSeconds / 60)
+.toString()
+.padStart(2,"0");
 
+const seconds =
+(timerSeconds % 60)
+.toString()
+.padStart(2,"0");
+
+document.getElementById("timer").textContent =
+`${minutes}:${seconds}`;
 }
 
-function saveNote(){
+function startTimer() {
 
-const title=
-document.getElementById("noteTitle").value.trim();
+if (timerInterval) return;
 
-const subject=
-document.getElementById("noteSubject").value.trim();
+timerInterval = setInterval(() => {
 
-const content=
-document.getElementById("noteContent").value.trim();
+if (timerSeconds <= 0) {
 
-if(!title||!content){
+clearInterval(timerInterval);
+timerInterval = null;
 
-alert("Please add a title and some notes.");
+alert("🎉 Study session finished!");
 
 return;
-
 }
 
-notes.unshift({
-
-id:Date.now(),
-
-title,
-
-subject:subject||"General",
-
-content,
-
-favourite:false
-
-});
-
-saveNotes();
-
-document.getElementById("noteTitle").value="";
-document.getElementById("noteSubject").value="";
-document.getElementById("noteContent").value="";
-
-renderNotes();
-
-}
-
-function renderNotes(){
-
-const list=document.getElementById("notesList");
-
-const search=
-(document.getElementById("noteSearch")?.value||"")
-.toLowerCase();
-
-list.innerHTML="";
-
-const filtered=notes.filter(note=>
-(note.title+" "+note.subject+" "+note.content)
-.toLowerCase()
-.includes(search)
-);
-
-if(filtered.length===0){
-
-list.innerHTML=`
-<p style="color:#999;margin-top:20px;">
-No notes found.
-</p>`;
-
-return;
-
-}
-
-filtered.forEach(note=>{
-
-const div=document.createElement("div");
-
-div.className="note";
-
-div.innerHTML=`
-
-<button
-class="favourite ${note.favourite?"active":""}"
-onclick="toggleNoteFavourite(${note.id})">
-${note.favourite?"⭐":"☆"}
-</button>
-
-<h3>${escapeHTML(note.title)}</h3>
-
-<div class="note-meta">
-${escapeHTML(note.subject)}
-</div>
-
-<div class="note-preview">
-${escapeHTML(note.content)}
-</div>
-
-<br>
-
-<button
-class="button danger small-button"
-onclick="deleteNote(${note.id})">
-Delete
-</button>
-
-`;
-
-list.appendChild(div);
-
-});
-
-}
-
-function toggleNoteFavourite(id){
-
-const note=notes.find(n=>n.id===id);
-
-if(note){
-
-note.favourite=!note.favourite;
-
-saveNotes();
-
-renderNotes();
-
-}
-
-}
-
-function deleteNote(id){
-
-notes=notes.filter(n=>n.id!==id);
-
-saveNotes();
-
-renderNotes();
-
-}
-
-
-/* =========================
-   TASKS
-========================= */
-
-let tasks=
-JSON.parse(localStorage.getItem("studiTasksV3"))||[];
-
-function saveTasks(){
-
-localStorage.setItem(
-"studiTasksV3",
-JSON.stringify(tasks)
-);
-
-}
-
-function addTask(){
-
-const input=document.getElementById("taskInput");
-
-const text=input.value.trim();
-
-if(!text)return;
-
-tasks.push({
-
-id:Date.now(),
-
-text,
-
-completed:false
-
-});
-
-saveTasks();
-
-input.value="";
-
-renderTasks();
-
-}
-
-function renderTasks(){
-
-const list=document.getElementById("taskList");
-
-list.innerHTML="";
-
-if(tasks.length===0){
-
-list.innerHTML=`
-<p style="color:#999;">
-No tasks yet. Add your first one!
-</p>`;
-
-return;
-
-}
-
-tasks.forEach(task=>{
-
-const div=document.createElement("div");
-
-div.className=
-"task"+(task.completed?" completed":"");
-
-div.innerHTML=`
-
-<input
-class="task-check"
-type="checkbox"
-${task.completed?"checked":""}
-onchange="toggleTask(${task.id})">
-
-<span>
-${escapeHTML(task.text)}
-</span>
-
-<button
-class="delete"
-onclick="deleteTask(${task.id})">
-×
-</button>
-
-`;
-
-list.appendChild(div);
-
-});
-
-}
-
-function toggleTask(id){
-
-const task=tasks.find(t=>t.id===id);
-
-if(task)task.completed=!task.completed;
-
-saveTasks();
-
-renderTasks();
-
-}
-
-function deleteTask(id){
-
-tasks=tasks.filter(t=>t.id!==id);
-
-saveTasks();
-
-renderTasks();
-
-}
-
-
-/* =========================
-   GOALS
-========================= */
-
-let goals=
-JSON.parse(localStorage.getItem("studiGoalsV3"))||[];
-
-function saveGoals(){
-
-localStorage.setItem(
-"studiGoalsV3",
-JSON.stringify(goals)
-);
-
-}
-
-function addGoal(){
-
-const input=document.getElementById("goalInput");
-
-const text=input.value.trim();
-
-if(!text)return;
-
-goals.push({
-
-id:Date.now(),
-
-text,
-
-progress:0
-
-});
-
-saveGoals();
-
-input.value="";
-
-renderGoals();
-
-}
-
-function renderGoals(){
-
-const list=document.getElementById("goalList");
-
-list.innerHTML="";
-
-if(goals.length===0){
-
-list.innerHTML=`
-<p style="color:#999;">
-No goals yet. Add your first goal!
-</p>`;
-
-return;
-
-}
-
-goals.forEach(goal=>{
-
-const div=document.createElement("div");
-
-div.className="goal";
-
-div.innerHTML=`
-
-<div class="goal-top">
-
-<strong>
-${escapeHTML(goal.text)}
-</strong>
-
-<button
-class="delete"
-onclick="deleteGoal(${goal.id})">
-×
-</button>
-
-</div>
-
-<input
-type="range"
-min="0"
-max="100"
-value="${goal.progress}"
-oninput="updateGoal(${goal.id},this.value)">
-
-<div style="
-display:flex;
-justify-content:space-between;
-font-size:13px;
-color:#777;
-margin-top:6px;">
-
-<span>Progress</span>
-
-<span>${goal.progress}%</span>
-
-</div>
-
-<div class="progress">
-
-<div
-class="progress-bar"
-style="width:${goal.progress}%">
-</div>
-
-</div>
-
-`;
-
-list.appendChild(div);
-
-});
-
-}
-
-function updateGoal(id,value){
-
-const goal=goals.find(g=>g.id===id);
-
-if(goal)goal.progress=Number(value);
-
-saveGoals();
-
-renderGoals();
-
-}
-
-function deleteGoal(id){
-
-goals=goals.filter(g=>g.id!==id);
-
-saveGoals();
-
-renderGoals();
-
-}
-
-
-/* =========================
-   RESOURCES
-========================= */
-
-let subjects=
-JSON.parse(localStorage.getItem("studiSubjectsV3"))||[
-
-{
-id:1,
-name:"Mathematics",
-resources:[]
-},
-
-{
-id:2,
-name:"Biology",
-resources:[]
-},
-
-{
-id:3,
-name:"Chemistry",
-resources:[]
-},
-
-{
-id:4,
-name:"Physics",
-resources:[]
-},
-
-{
-id:5,
-name:"English",
-resources:[]
-}
-
-];
-
-function saveSubjects(){
-
-localStorage.setItem(
-"studiSubjectsV3",
-JSON.stringify(subjects)
-);
-
-}
-
-function addSubject(){
-
-const input=document.getElementById("subjectInput");
-
-const name=input.value.trim();
-
-if(!name)return;
-
-subjects.push({
-
-id:Date.now(),
-
-name,
-
-resources:[]
-
-});
-
-saveSubjects();
-
-input.value="";
-
-renderResources();
-
-}
-
-function addResource(subjectId){
-
-const title=prompt("Resource name:");
-
-if(!title)return;
-
-const url=prompt("Paste the resource link:");
-
-if(!url)return;
-
-const subject=subjects.find(s=>s.id===subjectId);
-
-if(!subject)return;
-
-subject.resources.push({
-
-id:Date.now(),
-
-title,
-
-url,
-
-favourite:false
-
-});
-
-saveSubjects();
-
-renderResources();
-
-}
-
-function toggleResourceFavourite(subjectId,resourceId){
-
-const subject=subjects.find(s=>s.id===subjectId);
-
-if(!subject)return;
-
-const resource=
-subject.resources.find(r=>r.id===resourceId);
-
-if(resource){
-
-resource.favourite=!resource.favourite;
-
-saveSubjects();
-
-renderResources();
-
-}
-
-}
-
-function deleteResource(subjectId,resourceId){
-
-const subject=subjects.find(s=>s.id===subjectId);
-
-if(!subject)return;
-
-subject.resources=
-subject.resources.filter(
-r=>r.id!==resourceId
-);
-
-saveSubjects();
-
-renderResources();
-
-}
-
-function deleteSubject(id){
-
-subjects=subjects.filter(s=>s.id!==id);
-
-saveSubjects();
-
-renderResources();
-
-}
-
-function renderResources(){
-
-const container=
-document.getElementById("resourceSubjects");
-
-const search=
-(document.getElementById("resourceSearch")?.value||"")
-.toLowerCase();
-
-container.innerHTML="";
-
-subjects.forEach(subject=>{
-
-const filteredResources=
-subject.resources.filter(resource=>
-(resource.title+" "+subject.name)
-.toLowerCase()
-.includes(search)
-);
-
-if(search && filteredResources.length===0){
-
-return;
-
-}
-
-const div=document.createElement("div");
-
-div.className="subject";
-
-let resourcesHTML="";
-
-if(filteredResources.length===0){
-
-resourcesHTML=`
-<p style="color:#999;margin-top:12px;">
-No resources yet.
-</p>`;
-
-}else{
-
-filteredResources.forEach(resource=>{
-
-resourcesHTML+=`
-
-<div class="resource">
-
-<button
-class="favourite ${resource.favourite?"active":""}"
-onclick="toggleResourceFavourite(${subject.id},${resource.id})">
-${resource.favourite?"⭐":"☆"}
-</button>
-
-<h3>
-📌 ${escapeHTML(resource.title)}
-</h3>
-
-<a
-href="${escapeHTML(resource.url)}"
-target="_blank"
-rel="noopener noreferrer">
-Open Resource →
-</a>
-
-<button
-class="button danger small-button"
-style="float:right;margin-top:8px;"
-onclick="deleteResource(${subject.id},${resource.id})">
-Delete
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
-div.innerHTML=`
-
-<div class="subject-header">
-
-<h2>
-${escapeHTML(subject.name)}
-</h2>
-
-<div>
-
-<button
-class="button"
-onclick="addResource(${subject.id})">
-+ Resource
-</button>
-
-<button
-class="button danger"
-onclick="deleteSubject(${subject.id})">
-Delete
-</button>
-
-</div>
-
-</div>
-
-${resourcesHTML}
-
-`;
-
-container.appendChild(div);
-
-});
-
-}
-
-
-/* =========================
-   STUDY WHEEL
-========================= */
-
-let wheelOptions=
-JSON.parse(localStorage.getItem("studiWheelV3"))||[
-
-"Mathematics",
-"Biology",
-"Chemistry",
-"Physics",
-"English",
-"Revision"
-
-];
-
-let wheelRotation=0;
-
-function saveWheel(){
-
-localStorage.setItem(
-"studiWheelV3",
-JSON.stringify(wheelOptions)
-);
-
-}
-
-function addWheelOption(){
-
-const input=document.getElementById("wheelInput");
-
-const value=input.value.trim();
-
-if(!value)return;
-
-wheelOptions.push(value);
-
-saveWheel();
-
-input.value="";
-
-renderWheelOptions();
-
-}
-
-function removeWheelOption(index){
-
-wheelOptions.splice(index,1);
-
-saveWheel();
-
-renderWheelOptions();
-
-}
-
-function resetWheel(){
-
-wheelOptions=[
-
-"Mathematics",
-"Biology",
-"Chemistry",
-"Physics",
-"English",
-"Revision"
-
-];
-
-saveWheel();
-
-renderWheelOptions();
-
-document.getElementById("wheelResult")
-.textContent="Spin the wheel!";
-
-}
-
-function renderWheelOptions(){
-
-const list=document.getElementById("wheelOptions");
-
-list.innerHTML="";
-
-wheelOptions.forEach((option,index)=>{
-
-const div=document.createElement("div");
-
-div.className="option";
-
-div.innerHTML=`
-
-<span>
-${escapeHTML(option)}
-</span>
-
-<button
-class="delete"
-onclick="removeWheelOption(${index})">
-×
-</button>
-
-`;
-
-list.appendChild(div);
-
-});
-
-}
-
-function spinWheel(){
-
-if(wheelOptions.length===0){
-
-alert("Add some options first!");
-
-return;
-
-}
-
-const index=
-Math.floor(Math.random()*wheelOptions.length);
-
-wheelRotation+=720+(index*45);
-
-document.getElementById("wheelCircle")
-.style.transform=
-`rotate(${wheelRotation}deg)`;
-
-setTimeout(()=>{
-
-document.getElementById("wheelResult")
-.textContent=
-"Study "+wheelOptions[index]+" 📚";
-
-},2000);
-
-}
-
-
-/* =========================
-   TIMER
-========================= */
-
-let seconds=25*60;
-
-let timerInterval=null;
-
-function updateTimer(){
-
-const minutes=Math.floor(seconds/60);
-
-const remaining=seconds%60;
-
-document.getElementById("time")
-.textContent=
-`${minutes}:${remaining.toString().padStart(2,"0")}`;
-
-}
-
-function startTimer(){
-
-if(timerInterval)return;
-
-timerInterval=setInterval(()=>{
-
-if(seconds>0){
-
-seconds--;
+timerSeconds--;
 
 updateTimer();
 
-}else{
-
-clearInterval(timerInterval);
-
-timerInterval=null;
-
-alert("Study session complete! 🎉");
-
-}
-
 },1000);
-
 }
 
-function pauseTimer(){
+function pauseTimer() {
 
 clearInterval(timerInterval);
-
-timerInterval=null;
-
+timerInterval = null;
 }
 
-function resetTimer(){
+function resetTimer() {
 
 pauseTimer();
 
-seconds=25*60;
+timerSeconds = 25 * 60;
 
 updateTimer();
-
 }
 
 
-/* =========================
-   MINI GAME
-========================= */
+/* =========================================================
+BUTTON PRESSER
+========================================================= */
 
-let clickScore=0;
+let presses =
+Number(localStorage.getItem("studiPresses")) || 0;
 
-function pressButton(){
+document.getElementById("pressNumber").textContent =
+presses;
 
-clickScore++;
+function pressButton() {
 
-document.getElementById("clickScore")
-.textContent=clickScore;
+presses++;
 
+document.getElementById("pressNumber").textContent =
+presses;
+
+localStorage.setItem(
+"studiPresses",
+presses
+);
 }
 
-function resetGame(){
+function resetPresses() {
 
-clickScore=0;
+presses = 0;
 
-document.getElementById("clickScore")
-.textContent="0";
+document.getElementById("pressNumber").textContent =
+0;
 
+localStorage.setItem(
+"studiPresses",
+0
+);
 }
 
 
-/* =========================
-   FUN FACTS
-========================= */
+/* =========================================================
+SPIN WHEEL
+========================================================= */
 
-const facts=[
+let wheelRotation = 0;
 
-"Octopuses have three hearts.",
-
-"A day on Venus is longer than its year.",
-
-"Bananas are botanically classified as berries.",
-
-"The Eiffel Tower can become slightly taller in hot weather.",
-
-"Some species of bamboo can grow extremely quickly.",
-
-"Lightning can heat surrounding air to extremely high temperatures.",
-
-"Water naturally exists as a solid, liquid and gas.",
-
-"Your brain uses a large amount of the energy produced by your body.",
-
-"A group of flamingos is called a flamboyance.",
-
-"Some metals are liquid at room temperature.",
-
-"The human skeleton contains hundreds of bones.",
-
-"Sound travels differently through solids, liquids and gases."
-
+const wheelOptions = [
+"Maths",
+"Science",
+"English",
+"Read notes",
+"Take a break",
+"Surprise!"
 ];
 
-function newFact(){
+function spinWheel() {
 
-const fact=
-facts[Math.floor(Math.random()*facts.length)];
+const wheel =
+document.getElementById("wheel");
 
-document.getElementById("fact")
-.textContent=fact;
+const random =
+Math.floor(Math.random() * wheelOptions.length);
 
+wheelRotation +=
+1440 + random * 60;
+
+wheel.style.transform =
+`rotate(${wheelRotation}deg)`;
+
+setTimeout(() => {
+
+document.getElementById("wheelResult")
+.textContent =
+"🎉 " + wheelOptions[random];
+
+},3000);
 }
 
 
-/* =========================
-   FAQ
-========================= */
+/* =========================================================
+NOTES
+========================================================= */
 
-function toggleFAQ(button){
+let notes =
+JSON.parse(
+localStorage.getItem("studiNotes")
+) || [];
 
-button.parentElement.classList.toggle("open");
+let currentNote = null;
 
+function displayNotes() {
+
+const list =
+document.getElementById("noteList");
+
+list.innerHTML = "";
+
+notes.forEach((note,index) => {
+
+const button =
+document.createElement("button");
+
+button.textContent =
+"📝 " + note.title;
+
+button.onclick = () =>
+openNote(index);
+
+list.appendChild(button);
+
+});
 }
 
+function newNote() {
 
-/* =========================
-   CONTACT
-========================= */
+currentNote = null;
 
-function prepareContact(){
+document.getElementById("noteTitle")
+.value = "";
 
-const name=
-document.getElementById("contactName").value.trim();
+document.getElementById("noteText")
+.value = "";
+}
 
-const email=
-document.getElementById("contactEmail").value.trim();
+function openNote(index) {
 
-const message=
-document.getElementById("contactMessage").value.trim();
+currentNote = index;
 
-const status=
-document.getElementById("contactStatus");
+document.getElementById("noteTitle")
+.value = notes[index].title;
 
-if(!name||!email||!message){
+document.getElementById("noteText")
+.value = notes[index].text;
+}
 
-status.textContent=
-"Please complete all fields.";
+function saveNote() {
+
+const title =
+document.getElementById("noteTitle").value.trim();
+
+const text =
+document.getElementById("noteText").value;
+
+if (!title) {
+
+alert("Give your note a title first!");
 
 return;
+}
+
+if (currentNote === null) {
+
+notes.push({
+title: title,
+text: text
+});
+
+} else {
+
+notes[currentNote] = {
+title: title,
+text: text
+};
 
 }
 
-/*
-Replace YOUR-EMAIL-HERE with your real
-Studi.io support email before launch.
-*/
-
-const recipient="YOUR-EMAIL-HERE";
-
-const subject=
-encodeURIComponent("Studi.io Support");
-
-const body=
-encodeURIComponent(
-`Name: ${name}\nEmail: ${email}\n\n${message}`
+localStorage.setItem(
+"studiNotes",
+JSON.stringify(notes)
 );
 
-if(recipient==="YOUR-EMAIL-HERE"){
+displayNotes();
 
-status.textContent=
-"Your message is ready. Add your Studi.io support email in the code before launch.";
+alert("✅ Note saved!");
+}
 
+displayNotes();
+
+
+/* =========================================================
+GOALS
+========================================================= */
+
+let goals =
+JSON.parse(
+localStorage.getItem("studiGoals")
+) || [];
+
+function displayGoals() {
+
+const list =
+document.getElementById("goalList");
+
+list.innerHTML = "";
+
+goals.forEach((goal,index) => {
+
+const div =
+document.createElement("div");
+
+div.className =
+"goal" +
+(goal.completed ? " completed" : "");
+
+div.innerHTML = `
+
+<input
+type="checkbox"
+${goal.completed ? "checked" : ""}
+onchange="toggleGoal(${index})"
+>
+
+<span>${goal.text}</span>
+
+<button
+class="small-button"
+onclick="deleteGoal(${index})"
+style="margin-left:auto">
+
+🗑️
+
+</button>
+
+`;
+
+list.appendChild(div);
+
+});
+}
+
+function addGoal() {
+
+const input =
+document.getElementById("goalInput");
+
+const text =
+input.value.trim();
+
+if (!text) return;
+
+goals.push({
+text: text,
+completed: false
+});
+
+input.value = "";
+
+saveGoals();
+}
+
+function toggleGoal(index) {
+
+goals[index].completed =
+!goals[index].completed;
+
+saveGoals();
+}
+
+function deleteGoal(index) {
+
+goals.splice(index,1);
+
+saveGoals();
+}
+
+function saveGoals() {
+
+localStorage.setItem(
+"studiGoals",
+JSON.stringify(goals)
+);
+
+displayGoals();
+}
+
+displayGoals();
+
+
+/* =========================================================
+SNAKE
+========================================================= */
+
+const canvas =
+document.getElementById("snakeCanvas");
+
+const ctx =
+canvas.getContext("2d");
+
+const grid = 20;
+
+let snake;
+let food;
+let direction;
+let snakeInterval;
+let snakeScore = 0;
+
+function startSnake() {
+
+document.getElementById("snakeArea")
+.style.display = "flex";
+
+snake = [
+{x: 200, y: 200},
+{x: 180, y: 200},
+{x: 160, y: 200}
+];
+
+direction = {
+x: grid,
+y: 0
+};
+
+snakeScore = 0;
+
+document.getElementById("snakeScore")
+.textContent = snakeScore;
+
+placeFood();
+
+clearInterval(snakeInterval);
+
+snakeInterval =
+setInterval(updateSnake,100);
+}
+
+function placeFood() {
+
+food = {
+
+x:
+Math.floor(
+Math.random() *
+(canvas.width / grid)
+) * grid,
+
+y:
+Math.floor(
+Math.random() *
+(canvas.height / grid)
+) * grid
+};
+}
+
+function updateSnake() {
+
+const head = {
+x: snake[0].x + direction.x,
+y: snake[0].y + direction.y
+};
+
+if (
+head.x < 0 ||
+head.x >= canvas.width ||
+head.y < 0 ||
+head.y >= canvas.height
+) {
+
+endSnake();
 return;
+}
+
+for (let part of snake) {
+
+if (
+head.x === part.x &&
+head.y === part.y
+) {
+
+endSnake();
+return;
+}
+}
+
+snake.unshift(head);
+
+if (
+head.x === food.x &&
+head.y === food.y
+) {
+
+snakeScore++;
+
+document.getElementById("snakeScore")
+.textContent = snakeScore;
+
+placeFood();
+
+} else {
+
+snake.pop();
 
 }
 
-window.location.href=
-`mailto:${recipient}?subject=${subject}&body=${body}`;
+drawSnake();
+}
+
+function drawSnake() {
+
+ctx.fillStyle = "#1e2730";
+
+ctx.fillRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+ctx.fillStyle = "#ff9db8";
+
+ctx.fillRect(
+food.x,
+food.y,
+grid - 2,
+grid - 2
+);
+
+ctx.fillStyle = "#9bd9a5";
+
+snake.forEach(part => {
+
+ctx.fillRect(
+part.x,
+part.y,
+grid - 2,
+grid - 2
+);
+
+});
+}
+
+function endSnake() {
+
+clearInterval(snakeInterval);
+
+alert(
+"🐍 Game over! Score: " +
+snakeScore
+);
+}
+
+document.addEventListener(
+"keydown",
+event => {
+
+if (
+event.key === "ArrowUp" &&
+direction.y === 0
+) {
+
+direction = {
+x: 0,
+y: -grid
+};
 
 }
 
+if (
+event.key === "ArrowDown" &&
+direction.y === 0
+) {
 
-/* =========================
-   YEAR
-========================= */
+direction = {
+x: 0,
+y: grid
+};
 
-document.getElementById("year")
-.textContent=new Date().getFullYear();
+}
 
+if (
+event.key === "ArrowLeft" &&
+direction.x === 0
+) {
 
-/* =========================
-   LOAD EVERYTHING
-========================= */
+direction = {
+x: -grid,
+y: 0
+};
 
-renderNotes();
+}
 
-renderTasks();
+if (
+event.key === "ArrowRight" &&
+direction.x === 0
+) {
 
-renderGoals();
+direction = {
+x: grid,
+y: 0
+};
 
-renderResources();
+}
 
-renderWheelOptions();
-
-updateTimer();
+}
+);
 
 </script>
 
 </body>
 </html>
-
